@@ -383,8 +383,7 @@ export class ProfileProvider {
       date = new Date(Number(groupBackupInfo.timestamp));
 
     this.logger.info(
-      `Binding wallet: ${wallet.id} - Backed up: ${!needsBackup} ${
-        date ? date : ''
+      `Binding wallet: ${wallet.id} - Backed up: ${!needsBackup} ${date ? date : ''
       } - Encrypted: ${wallet.isPrivKeyEncrypted} - Token: ${!!wallet
         .credentials.token}`
     );
@@ -434,7 +433,7 @@ export class ProfileProvider {
           return;
         }
         wallet.setNotificationsInterval(this.UPDATE_PERIOD);
-        wallet.openWallet(() => {});
+        wallet.openWallet(() => { });
       }
     );
     this.events.subscribe('Local/ConfigUpdate', opts => {
@@ -459,6 +458,9 @@ export class ProfileProvider {
     wallet n=1 : BIP44 - P2SH - ETH only if it is 60'
     key : !use44forMultisig - !use0forBCH - compliantDerivation - !BIP45
      */
+
+    // tslint:disable-next-line: no-debugger
+    debugger;
 
     const key = this.keyProvider.getKey(keyId);
 
@@ -1031,7 +1033,7 @@ export class ProfileProvider {
               opts.keyId = null;
               data.credentials.keyId = key.id;
             } else {
-              key = Key.fromObj(data.key);
+              key = new Key({ seedType: 'object', seedData: data.key });
             }
           }
           addressBook = data.addressBook;
@@ -1357,11 +1359,24 @@ export class ProfileProvider {
       if (opts.mnemonic) {
         try {
           opts.mnemonic = this.normalizeMnemonic(opts.mnemonic);
-          key = Key.fromMnemonic(opts.mnemonic, {
+
+          // tslint:disable-next-line: no-debugger
+          debugger;
+
+          key = new Key({
+            seedType: 'mnemonic',
+            seedData: opts.mnemonic,
             useLegacyCoinType: opts.useLegacyCoinType,
             useLegacyPurpose: opts.useLegacyPurpose,
             passphrase: opts.passphrase
           });
+
+          // key = Key.setFromMnemonic(opts.mnemonic, {
+          //   useLegacyCoinType: opts.useLegacyCoinType,
+          //   useLegacyPurpose: opts.useLegacyPurpose,
+          //   passphrase: opts.passphrase
+          // });
+
           walletClient.fromString(
             key.createCredentials(opts.password, {
               coin: opts.coin,
@@ -1381,10 +1396,19 @@ export class ProfileProvider {
         }
       } else if (opts.extendedPrivateKey) {
         try {
-          key = Key.fromExtendedPrivateKey(opts.extendedPrivateKey, {
+
+          key = new Key({
+            seedType: 'extendedPrivateKey',
+            seedData: opts.extendedPrivateKey,
             useLegacyCoinType: opts.useLegacyCoinType,
             useLegacyPurpose: opts.useLegacyPurpose
-          });
+          })
+
+          // key = Key.fromExtendedPrivateKey(opts.extendedPrivateKey, {
+          //   useLegacyCoinType: opts.useLegacyCoinType,
+          //   useLegacyPurpose: opts.useLegacyPurpose
+          // });
+
           walletClient.fromString(
             key.createCredentials(null, {
               coin: opts.coin,
@@ -1408,8 +1432,9 @@ export class ProfileProvider {
         const lang = this.languageProvider.getCurrent();
         try {
           if (!opts.key && !opts.keyId) {
-            key = Key.create({
-              lang
+            key = new Key({
+              seedType: 'new',
+              language: lang
             });
           } else if (opts.key) {
             key = opts.key;
@@ -1428,7 +1453,10 @@ export class ProfileProvider {
           this.logger.info('Error creating recovery phrase: ' + e.message);
           if (e.message.indexOf('language') > 0) {
             this.logger.info('Using default language for recovery phrase');
-            key = Key.create({});
+
+            // key = Key.create({});
+            key = new Key();
+
             walletClient.fromString(
               key.createCredentials(opts.password, {
                 coin: opts.coin,
@@ -1678,8 +1706,7 @@ export class ProfileProvider {
 
   private _createMultisigEthWallet(ethWallet, multisigEthInfo) {
     this.logger.debug(
-      `Creating ETH multisig wallet ${multisigEthInfo.walletName} for ${
-        ethWallet.id
+      `Creating ETH multisig wallet ${multisigEthInfo.walletName} for ${ethWallet.id
       }:`
     );
     const multisigEthCredentials = ethWallet.credentials.getMultisigEthCredentials(

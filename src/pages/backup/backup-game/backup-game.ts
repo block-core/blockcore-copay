@@ -148,15 +148,21 @@ export class BackupGamePage {
       const keyClient = this.bwcProvider.getKey();
       const separator = this.useIdeograms ? '\u3000' : ' ';
       const customSentence = customWordList.join(separator);
+
+      // tslint:disable-next-line: no-debugger
+      debugger;
+
       const password = this.password || '';
       let key;
 
       try {
-        key = keyClient.fromMnemonic(customSentence, {
-          useLegacyCoinType: false,
-          useLegacyPurpose: false,
-          passphrase: password
-        });
+        key = new keyClient({ seedType: 'mnemonic', seedData: customSentence, useLegacyCoinType: false, useLegacyPurpose: false, passphrase: password });
+
+        // key = keyClient.setFromMnemonic(customSentence, {
+        //   useLegacyCoinType: false,
+        //   useLegacyPurpose: false,
+        //   passphrase: password
+        // });
       } catch (err) {
         this.showErrorInfoSheet(err);
         return;

@@ -44,7 +44,7 @@ export class KeyProvider {
       this.logger.debug(`keys length: ${keys.length}`);
       keys.forEach(k => {
         this.logger.debug(`storage keyid: ${k.id}`);
-        this.keys.push(this.Key.fromObj(k));
+        this.keys.push(new this.Key({ seedType: 'object', seedData: k }));
       });
       return Promise.resolve();
     });
@@ -58,7 +58,7 @@ export class KeyProvider {
 
     const keysToAdd = [];
     this.keys.forEach(k => {
-      keysToAdd.push(k.toObj(k));
+      keysToAdd.push(new this.Key({ seedType: 'object', seedData: k }));
     });
     return this.persistenceProvider.setKeys(keysToAdd).then(() => {
       this.isDirty = false;
@@ -72,10 +72,10 @@ export class KeyProvider {
 
     if (keyIndex >= 0) {
       // only for encrypt/decrypt
-      if (replaceKey) this.keys.splice(keyIndex, 1, this.Key.fromObj(keyToAdd));
+      if (replaceKey) this.keys.splice(keyIndex, 1, new this.Key({ seedType: 'object', seedData: keyToAdd }));
       else return Promise.resolve();
     } else {
-      this.keys.push(this.Key.fromObj(keyToAdd));
+      this.keys.push(new this.Key({ seedType: 'object', seedData: keyToAdd }));
     }
     this.isDirty = true;
     return this.storeKeysIfDirty();
@@ -84,7 +84,7 @@ export class KeyProvider {
   public addKeys(keysToAdd: any[]): Promise<any> {
     keysToAdd.forEach(keyToAdd => {
       if (!this.keys.find(k => this.isMatch(keyToAdd, k))) {
-        this.keys.push(this.Key.fromObj(keyToAdd));
+        this.keys.push(new this.Key({ seedType: 'object', seedData: keyToAdd }));
         this.isDirty = true;
       } else {
         this.logger.warn('Key already added');

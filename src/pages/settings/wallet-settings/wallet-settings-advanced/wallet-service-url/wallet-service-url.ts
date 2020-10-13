@@ -88,7 +88,7 @@ export class WalletServiceUrlPage {
         break;
       case 'loc':
       case 'local':
-        bws = 'http://localhost:3232/bws/api';
+        bws = 'http://localhost:3000/bws/api';
         break;
     }
     if (bws) {

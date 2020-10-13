@@ -99,6 +99,10 @@ export class CreateWalletPage implements OnInit {
     private persistenceProvider: PersistenceProvider,
     private errorsProvider: ErrorsProvider
   ) {
+
+    // tslint:disable-next-line: no-debugger
+    debugger;
+
     this.okText = this.translate.instant('Ok');
     this.cancelText = this.translate.instant('Cancel');
     this.isShared = this.navParams.get('isShared');
@@ -212,6 +216,10 @@ export class CreateWalletPage implements OnInit {
   }
 
   public setOptsAndCreate(): void {
+
+    // tslint:disable-next-line: no-debugger
+    debugger;
+
     const opts: Partial<WalletOptions> = {
       keyId: this.keyId,
       name: this.createForm.value.walletName,
@@ -426,13 +434,13 @@ export class CreateWalletPage implements OnInit {
     this.isOpenSelector = true;
     const eligibleWallets = this.keyId
       ? this.profileProvider.getWalletsFromGroup({
-          keyId: this.keyId,
-          hasFunds: true,
-          coin: 'eth',
-          network: 'testnet', // TODO livenet
-          m: 1,
-          n: 1
-        })
+        keyId: this.keyId,
+        hasFunds: true,
+        coin: 'eth',
+        network: 'testnet', // TODO livenet
+        m: 1,
+        n: 1
+      })
       : [];
 
     const walletSelector = this.actionSheetProvider.createInfoSheet(
