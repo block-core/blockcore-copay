@@ -135,6 +135,13 @@ export class IncomingDataProvider {
     );
   }
 
+  private isValidCityAddress(data: string): boolean {
+    return !!(
+      this.bwcProvider.getBitcoreCity().Address.isValid(data, 'livenet') ||
+      this.bwcProvider.getBitcoreCity().Address.isValid(data, 'testnet')
+    );
+  }
+
   public isValidBitcoinCashLegacyAddress(data: string): boolean {
     return !!(
       this.bwcProvider.getBitcore().Address.isValid(data, 'livenet') ||
@@ -479,6 +486,25 @@ export class IncomingDataProvider {
     // });
   }
 
+  private handlePlainCityAddress(
+    data: string,
+    redirParams?: RedirParams
+  ): void {
+    this.logger.debug('Incoming-data: City plain address');
+    const coin = Coin.CITY;
+    if (redirParams && redirParams.activePage === 'ScanPage') {
+      this.showMenu({
+        data,
+        type: 'cityAddress',
+        coin
+      });
+    } else if (redirParams && redirParams.amount) {
+      this.goSend(data, redirParams.amount, '', coin);
+    } else {
+      this.goToAmountPage(data, coin);
+    }
+  }
+
   private handlePlainBitcoinAddress(
     data: string,
     redirParams?: RedirParams
@@ -791,6 +817,11 @@ export class IncomingDataProvider {
       this.handlePlainUrl(data);
       return true;
 
+      // Plain Address (City)
+    } else if (this.isValidCityAddress(data)) {
+      this.handlePlainCityAddress(data, redirParams);
+      return true;
+
       // Plain Address (Bitcoin)
     } else if (this.isValidBitcoinAddress(data)) {
       this.handlePlainBitcoinAddress(data, redirParams);
@@ -1007,6 +1038,14 @@ export class IncomingDataProvider {
         data,
         type: 'BitcoinAddress',
         title: this.translate.instant('Bitcoin Address')
+      };
+
+      // Plain Address (City Coin)
+    } else if (this.isValidCityAddress(data)) {
+      return {
+        data,
+        type: 'CityAddress',
+        title: this.translate.instant('City Address')
       };
 
       // Plain Address (Bitcoin Cash)

@@ -9,6 +9,7 @@ export class DerivationPathHelperProvider {
   public defaultTestnet: string;
   public defaultMultisigBTC: string;
   public defaultMultisigBCH: string;
+  public defaultCITY: string;
 
   public constructor() {
     this.defaultBTC = "m/44'/0'/0'";
@@ -18,6 +19,7 @@ export class DerivationPathHelperProvider {
     this.defaultMultisigBTC = "m/48'/0'/0'";
     this.defaultMultisigBCH = "m/48'/145'/0'";
     this.defaultTestnet = "m/44'/1'/0'";
+    this.defaultCITY = "m/44'/1926'/0'";
   }
 
   public parsePath(path: string) {
@@ -70,6 +72,9 @@ export class DerivationPathHelperProvider {
       case "144'": // for XRP
         networkName = 'livenet';
         break;
+      case "1926'": // for CITY
+        networkName = 'livenet';
+        break;
     }
     return networkName;
   }
@@ -104,6 +109,9 @@ export class DerivationPathHelperProvider {
         break;
       case 'xrp':
         isValid = ["144'", "0'", "1'"].indexOf(coinCode) > -1;
+        break;
+      case 'city':
+        isValid = ["1926'", "0'", "1'"].indexOf(coinCode) > -1;
         break;
     }
 

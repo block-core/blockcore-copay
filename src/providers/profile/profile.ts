@@ -383,8 +383,7 @@ export class ProfileProvider {
       date = new Date(Number(groupBackupInfo.timestamp));
 
     this.logger.info(
-      `Binding wallet: ${wallet.id} - Backed up: ${!needsBackup} ${
-        date ? date : ''
+      `Binding wallet: ${wallet.id} - Backed up: ${!needsBackup} ${date ? date : ''
       } - Encrypted: ${wallet.isPrivKeyEncrypted} - Token: ${!!wallet
         .credentials.token}`
     );
@@ -434,7 +433,7 @@ export class ProfileProvider {
           return;
         }
         wallet.setNotificationsInterval(this.UPDATE_PERIOD);
-        wallet.openWallet(() => {});
+        wallet.openWallet(() => { });
       }
     );
     this.events.subscribe('Local/ConfigUpdate', opts => {
@@ -1016,6 +1015,8 @@ export class ProfileProvider {
       let credentials;
       let key;
       let addressBook;
+      // tslint:disable-next-line: no-debugger
+      debugger;
       const Key = this.bwcProvider.getKey();
 
       const data = JSON.parse(str);
@@ -1341,6 +1342,10 @@ export class ProfileProvider {
 
   private seedWallet(opts?): Promise<any> {
     return new Promise((resolve, reject) => {
+
+      // tslint:disable-next-line: no-debugger
+      debugger;
+
       opts = opts ? opts : {};
       opts['bp_partner'] = this.appProvider.info.name;
       opts['bp_partner_version'] = this.appProvider.info.version;
@@ -1352,6 +1357,10 @@ export class ProfileProvider {
 
       const walletClient = this.bwcProvider.getClient(null, opts);
       const network = opts.networkName || 'livenet';
+
+      // tslint:disable-next-line: no-debugger
+      debugger;
+
       const Key = this.bwcProvider.getKey();
       let key;
       if (opts.mnemonic) {
@@ -1454,10 +1463,17 @@ export class ProfileProvider {
       if (showOpts.mnemonic) showOpts.mnemonic = '[hidden]';
       if (showOpts.password) showOpts.password = '[hidden]';
 
+      // tslint:disable-next-line: no-debugger
+      debugger;
+
       this.logger.debug('Creating Wallet:', JSON.stringify(showOpts));
       setTimeout(() => {
         this.seedWallet(opts)
           .then(data => {
+
+            // tslint:disable-next-line: no-debugger
+            debugger;
+
             const coin = `[${opts.coin.toUpperCase()}]`;
             const name =
               opts.name ||
@@ -1678,8 +1694,7 @@ export class ProfileProvider {
 
   private _createMultisigEthWallet(ethWallet, multisigEthInfo) {
     this.logger.debug(
-      `Creating ETH multisig wallet ${multisigEthInfo.walletName} for ${
-        ethWallet.id
+      `Creating ETH multisig wallet ${multisigEthInfo.walletName} for ${ethWallet.id
       }:`
     );
     const multisigEthCredentials = ethWallet.credentials.getMultisigEthCredentials(
@@ -1778,6 +1793,10 @@ export class ProfileProvider {
   }
 
   public createWallet(opts) {
+
+    // tslint:disable-next-line: no-debugger
+    debugger;
+
     return this.keyProvider.handleEncryptedWallet(opts.keyId).then(password => {
       opts.password = password;
       return this._createWallet(opts).then(data => {

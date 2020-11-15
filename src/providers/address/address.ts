@@ -12,11 +12,13 @@ export interface CoinNetwork {
 export class AddressProvider {
   private bitcore;
   private bitcoreCash;
+  private bitcoreCity;
   private core;
 
   constructor(private bwcProvider: BwcProvider, private logger: Logger) {
     this.bitcore = this.bwcProvider.getBitcore();
     this.bitcoreCash = this.bwcProvider.getBitcoreCash();
+    this.bitcoreCity = this.bwcProvider.getBitcoreCity();
     this.core = this.bwcProvider.getCore();
   }
 
@@ -44,34 +46,43 @@ export class AddressProvider {
       return { coin: 'btc', network };
     } catch (e) {
       try {
-        network = this.bitcoreCash.Address(address).network.name;
-        return { coin: 'bch', network };
+        // tslint:disable-next-line: no-debugger
+        debugger;
+        network = this.bitcoreCity.Address(address).network.name;
+        return { coin: 'city', network };
       } catch (e) {
+
         try {
-          const isValidEthAddress = this.core.Validation.validateAddress(
-            'ETH',
-            network,
-            address
-          );
-          if (isValidEthAddress) {
-            return { coin: 'eth', network };
-          } else {
-            throw isValidEthAddress;
-          }
-        } catch (e) {
+          network = this.bitcoreCash.Address(address).network.name;
+          return { coin: 'bch', network };
+        }
+        catch (e) {
           try {
-            const isValidXrpAddress = this.core.Validation.validateAddress(
-              'XRP',
+            const isValidEthAddress = this.core.Validation.validateAddress(
+              'ETH',
               network,
               address
             );
-            if (isValidXrpAddress) {
-              return { coin: 'xrp', network };
+            if (isValidEthAddress) {
+              return { coin: 'eth', network };
             } else {
-              return null;
+              throw isValidEthAddress;
             }
           } catch (e) {
-            return null;
+            try {
+              const isValidXrpAddress = this.core.Validation.validateAddress(
+                'XRP',
+                network,
+                address
+              );
+              if (isValidXrpAddress) {
+                return { coin: 'xrp', network };
+              } else {
+                return null;
+              }
+            } catch (e) {
+              return null;
+            }
           }
         }
       }

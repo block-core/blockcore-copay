@@ -46,6 +46,7 @@ export class SendPage {
   public invalidAddress: boolean;
   private validDataTypeMap: string[] = [
     'BitcoinAddress',
+    'CityAddress',
     'BitcoinCashAddress',
     'EthereumAddress',
     'EthereumUri',
@@ -162,7 +163,7 @@ export class SendPage {
       );
       isValid =
         this.currencyProvider.getChain(this.wallet.coin).toLowerCase() ==
-          addrData.coin && addrData.network == this.wallet.network;
+        addrData.coin && addrData.network == this.wallet.network;
     }
 
     if (isValid) {
@@ -230,7 +231,16 @@ export class SendPage {
     if (this.search == '') this.invalidAddress = false;
     const hasContacts = await this.checkIfContact();
     if (!hasContacts) {
+
+      // tslint:disable-next-line: no-debugger
+      debugger;
+
+      console.log('Search: ' + this.search);
+
       const parsedData = this.incomingDataProvider.parseData(this.search);
+
+      console.log('ParsedData: ' + parsedData);
+
       if (
         (parsedData && parsedData.type == 'PayPro') ||
         (parsedData && parsedData.type == 'InvoiceUri')

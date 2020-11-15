@@ -16,9 +16,9 @@ export class FeeProvider {
     coin: string;
     data?: any;
   } = {
-    updateTs: 0,
-    coin: ''
-  };
+      updateTs: 0,
+      coin: ''
+    };
 
   constructor(
     private configProvider: ConfigProvider,
@@ -44,6 +44,9 @@ export class FeeProvider {
   public getCoinCurrentFeeLevel(coin): string {
     let feeLevel;
     switch (coin) {
+      case 'city':
+        feeLevel = 'normal';
+        break;
       case 'bch':
         feeLevel = 'normal';
         break;
@@ -88,12 +91,12 @@ export class FeeProvider {
           if (!response.fromCache)
             this.logger.debug(
               'Dynamic fee: ' +
-                feeLevel +
-                '/' +
-                network +
-                ' ' +
-                (feeLevelRate.feePerKb / 1000).toFixed() +
-                ' SAT/B'
+              feeLevel +
+              '/' +
+              network +
+              ' ' +
+              (feeLevelRate.feePerKb / 1000).toFixed() +
+              ' SAT/B'
             );
           return resolve(feeRate);
         })

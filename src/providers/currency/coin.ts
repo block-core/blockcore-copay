@@ -79,6 +79,42 @@ export const availableCoins: CoinsMap<CoinOpts> = {
       gradientBackgroundColor: '#f7921a'
     }
   },
+  city: {
+    name: 'City Coin',
+    chain: 'CITY',
+    coin: 'city',
+    unitInfo: {
+      unitName: 'CITY',
+      unitToSatoshi: 100000000,
+      unitDecimals: 8,
+      unitCode: 'city'
+    },
+    properties: {
+      hasMultiSig: true,
+      hasMultiSend: true,
+      isUtxo: true,
+      isERCToken: false,
+      isStableCoin: false,
+      singleAddress: false
+    },
+    paymentInfo: {
+      paymentCode: 'BIP73',
+      protocolPrefix: { livenet: 'citychain', testnet: 'citychain' },
+      ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/btc',
+      blockExplorerUrls: 'bitpay.com/insight/#/CITY/'
+    },
+    feeInfo: {
+      feeUnit: 'sat/byte',
+      feeUnitAmount: 1000,
+      blockTime: 10,
+      maxMerchantFee: 'urgent'
+    },
+    theme: {
+      coinColor: '#f7931a',
+      backgroundColor: '#f7921a',
+      gradientBackgroundColor: '#f7921a'
+    }
+  },
   bch: {
     name: 'Bitcoin Cash',
     chain: 'BCH',

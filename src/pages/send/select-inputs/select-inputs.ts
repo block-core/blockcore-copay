@@ -44,6 +44,7 @@ export class SelectInputsPage {
   private selectedInputs = [];
   private validDataTypeMap: string[] = [
     'BitcoinAddress',
+    'CityAddress',
     'BitcoinCashAddress',
     'EthereumAddress',
     'EthereumUri',
@@ -150,6 +151,7 @@ export class SelectInputsPage {
     if (
       this.parsedData &&
       (this.parsedData.type === 'BitcoinUri' ||
+        this.parsedData.type === 'CityUri' ||
         this.parsedData.type === 'BitcoinCashUri' ||
         this.parsedData.type === 'EthereumUri')
     ) {
@@ -251,7 +253,7 @@ export class SelectInputsPage {
     );
     const isValid =
       this.currencyProvider.getChain(this.wallet.coin).toLowerCase() ==
-        addrData.coin && addrData.network == this.wallet.network;
+      addrData.coin && addrData.network == this.wallet.network;
 
     if (isValid) {
       this.invalidAddress = false;
@@ -382,8 +384,8 @@ export class SelectInputsPage {
   public canContinue() {
     return this.recipient
       ? (this.selectedInputs && this.selectedInputs.length <= 0) ||
-          (this.recipient.amountToShow &&
-            this.recipient.amountToShow > this.totalAmount)
+      (this.recipient.amountToShow &&
+        this.recipient.amountToShow > this.totalAmount)
       : true;
   }
 

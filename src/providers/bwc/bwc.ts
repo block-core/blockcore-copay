@@ -19,6 +19,10 @@ export class BwcProvider {
     return BWC.BitcoreCash;
   }
 
+  public getBitcoreCity() {
+    return BWC.BitcoreCity;
+  }
+
   public getCore() {
     return BWC.Core;
   }
@@ -36,6 +40,8 @@ export class BwcProvider {
   }
 
   public getKey() {
+    // tslint:disable-next-line: no-debugger
+    debugger;
     return BWC.Key;
   }
 
@@ -53,6 +59,12 @@ export class BwcProvider {
 
   public getClient(walletData?, opts?) {
     opts = opts || {};
+
+    // tslint:disable-next-line: no-debugger
+    debugger;
+
+    opts.bwsurl = 'http://localhost:3232/bws/api';
+    opts.verbose = true;
 
     // note opts use `bwsurl` all lowercase;
     let bwc = new BWC({

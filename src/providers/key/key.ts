@@ -21,6 +21,8 @@ export class KeyProvider {
     private persistenceProvider: PersistenceProvider,
     private translate: TranslateService
   ) {
+    // tslint:disable-next-line: no-debugger
+    debugger;
     this.logger.debug('KeyProvider initialized');
     this.isDirty = false;
   }
