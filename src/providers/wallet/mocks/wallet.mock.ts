@@ -146,16 +146,16 @@ export class WalletMock {
       walletId: 'walletid1',
       walletName: 'Test wallet',
       keyId: 'keyId1',
-      coin: 'btc'
+      coin: 'city'
     };
-    this.coin = 'btc';
+    this.coin = 'city';
     this.id = 'walletid1';
     this.needsBackup = false;
     this.network = 'livenet';
     this.pendingTxps = [];
     this.scanning = null;
     this.status = statusMock;
-    this.totalBalanceSat = '0.01 BTC';
+    this.totalBalanceSat = '0.01 CITY';
   }
   isComplete() {
     return true;
@@ -166,7 +166,7 @@ export class WalletMock {
   getRootPath() {
     return 'path';
   }
-  setNotificationsInterval(_x) {}
+  setNotificationsInterval(_x) { }
 
   getTxNote(_opts, cb) {
     return cb(null, 'Note');
@@ -212,7 +212,7 @@ export class WalletMock {
   }
   createTxProposal(_txp, cb) {
     const txp: TransactionProposal = {
-      coin: 'btc',
+      coin: 'city',
       amount: 1000,
       from: 'address1',
       toAddress: 'address1',

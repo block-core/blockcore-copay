@@ -16,9 +16,9 @@ export class FeeProvider {
     coin: string;
     data?: any;
   } = {
-    updateTs: 0,
-    coin: ''
-  };
+      updateTs: 0,
+      coin: ''
+    };
 
   constructor(
     private configProvider: ConfigProvider,
@@ -44,6 +44,9 @@ export class FeeProvider {
   public getCoinCurrentFeeLevel(coin): string {
     let feeLevel;
     switch (coin) {
+      case 'city':
+        feeLevel = 'normal';
+        break;
       case 'bch':
         feeLevel = 'normal';
         break;
@@ -88,12 +91,12 @@ export class FeeProvider {
           if (!response.fromCache)
             this.logger.debug(
               'Dynamic fee: ' +
-                feeLevel +
-                '/' +
-                network +
-                ' ' +
-                (feeLevelRate.feePerKb / 1000).toFixed() +
-                ' SAT/B'
+              feeLevel +
+              '/' +
+              network +
+              ' ' +
+              (feeLevelRate.feePerKb / 1000).toFixed() +
+              ' SAT/B'
             );
           return resolve(feeRate);
         })
@@ -105,7 +108,7 @@ export class FeeProvider {
 
   public getFeeLevels(coin: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      coin = coin || 'btc';
+      coin = coin || 'city';
 
       if (
         this.cache.coin == coin &&
@@ -148,7 +151,7 @@ export class FeeProvider {
 
   public getSpeedUpTxFee(network: string, txSize: number): Promise<number> {
     // Only for BTC
-    return this.getFeeRate('btc', network, 'urgent').then(urgentFee => {
+    return this.getFeeRate('city', network, 'urgent').then(urgentFee => {
       // 250 bytes approx. is the minimum size of a tx with 1 input and 1 output
       const averageTxSize = 250;
       const fee = (urgentFee / 1000) * (txSize + averageTxSize);

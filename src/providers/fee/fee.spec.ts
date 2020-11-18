@@ -10,7 +10,7 @@ describe('Provider: Fee Provider', () => {
   let configProvider: ConfigProvider;
 
   class BwcProviderMock {
-    constructor() {}
+    constructor() { }
     getClient() {
       const walletClient = {
         getFeeLevels: (coin, network, cb) => {
@@ -18,7 +18,7 @@ describe('Provider: Fee Provider', () => {
           if (coin == 'bch' && network == 'livenet') {
             levels = [{ level: 'normal', feePerKb: 1000, nbBlocks: 2 }];
           }
-          if (coin == 'btc' && network == 'livenet') {
+          if (coin == 'city' && network == 'livenet') {
             levels = [
               { level: 'urgent', feePerKb: 272369, nbBlocks: 2 },
               { level: 'priority', feePerKb: 181579, nbBlocks: 2 },

@@ -155,10 +155,10 @@ export class ConfigProvider {
         reconnectDelay: 5000,
         idleDurationMin: 4,
         settings: {
-          unitName: 'BTC',
+          unitName: 'CITY',
           unitToSatoshi: 100000000,
           unitDecimals: 8,
-          unitCode: 'btc',
+          unitCode: 'city',
           alternativeName: 'US Dollar',
           alternativeIsoCode: 'USD',
           defaultLanguage: '',
@@ -168,7 +168,8 @@ export class ConfigProvider {
 
       // Bitcore wallet service URL
       bws: {
-        url: 'https://bws.bitpay.com/bws/api' // Uncomment and replace w/ http://localhost:3232/bws/api for testing
+        // url: 'https://bws.bitpay.com/bws/api' // Uncomment and replace w/ http://localhost:3232/bws/api for testing
+        url: 'http://localhost:3232/bws/api'
       },
 
       adPubKey: {
@@ -300,9 +301,9 @@ export class ConfigProvider {
 
     this.logger.debug(
       'Config | spendUnconfirmed: ' +
-        spendUnconfirmed +
-        ' - lockMethod: ' +
-        lockMethod
+      spendUnconfirmed +
+      ' - lockMethod: ' +
+      lockMethod
     );
   }
 

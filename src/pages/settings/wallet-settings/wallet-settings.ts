@@ -80,7 +80,7 @@ export class WalletSettingsPage {
   }
 
   private getShowDuplicateWalletOption(): boolean {
-    if (this.wallet.network != 'livenet' || this.wallet.coin != 'btc')
+    if (this.wallet.network != 'livenet' || this.wallet.coin != 'city')
       return false;
 
     const key = this.keyProvider.getKey(this.wallet.credentials.keyId);

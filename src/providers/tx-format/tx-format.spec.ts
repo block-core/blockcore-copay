@@ -15,7 +15,7 @@ describe('TxFormatProvider', () => {
   let txFormatProvider: TxFormatProvider;
 
   class PersistenceProviderMock {
-    constructor() {}
+    constructor() { }
     storeConfig() {
       return Promise.resolve('');
     }
@@ -210,12 +210,12 @@ describe('TxFormatProvider', () => {
 
     it('should return same tx if tx.action is invalid', () => {
       tx.action = 'invalid';
-      expect(txFormatProvider.processTx(Coin.BTC, tx)).toEqual(tx);
+      expect(txFormatProvider.processTx(Coin.CITY, tx)).toEqual(tx);
     });
 
     it('should return tx with defined values if tx.action is received', () => {
       tx.action = 'received';
-      let result = txFormatProvider.processTx(Coin.BTC, tx);
+      let result = txFormatProvider.processTx(Coin.CITY, tx);
 
       expect(tx.toAddress).toBeDefined();
       expect(tx.toAddress).toEqual('mxMUZvgFR8D3LRscz5GbXERPXNSp1ww8Bb');
@@ -245,7 +245,7 @@ describe('TxFormatProvider', () => {
 
     it('should return same tx.amount if only has one output', () => {
       tx.action = 'sent';
-      txFormatProvider.processTx(Coin.BTC, tx);
+      txFormatProvider.processTx(Coin.CITY, tx);
       expect(tx.hasMultiplesOutputs).toBeFalsy();
       expect(tx.amount).toEqual(447100);
     });
@@ -264,7 +264,7 @@ describe('TxFormatProvider', () => {
           toAddress: 'mxMUZvgFR8D3LRscz5GbXERPXNSp1ww8Bb'
         }
       ];
-      txFormatProvider.processTx(Coin.BTC, tx);
+      txFormatProvider.processTx(Coin.CITY, tx);
       expect(tx.hasMultiplesOutputs).toBeTruthy();
       expect(tx.amount).toEqual(1094200);
     });
@@ -285,7 +285,7 @@ describe('TxFormatProvider', () => {
     });
 
     it('should return amount parsed correctly if the currency is BTC', () => {
-      let result = txFormatProvider.parseAmount(Coin.BTC, 0.012235, 'BTC', {
+      let result = txFormatProvider.parseAmount(Coin.CITY, 0.012235, 'BTC', {
         onlyIntegers: false
       });
       expect(result).toEqual({
@@ -301,7 +301,7 @@ describe('TxFormatProvider', () => {
       spyOn(filterProvider, 'formatFiatAmount').and.returnValue('1,505');
       spyOn(rateProvider, 'fromFiat').and.returnValue(24117237);
 
-      let result = txFormatProvider.parseAmount(Coin.BTC, 1505, 'USD', {
+      let result = txFormatProvider.parseAmount(Coin.CITY, 1505, 'USD', {
         onlyIntegers: false
       });
       expect(result).toEqual({
@@ -329,7 +329,7 @@ describe('TxFormatProvider', () => {
       spyOn(rateProvider, 'fromFiat').and.returnValue(24117237);
 
       let onlyIntegers = true;
-      let result = txFormatProvider.parseAmount(Coin.BTC, 1505, 'JPY', {
+      let result = txFormatProvider.parseAmount(Coin.CITY, 1505, 'JPY', {
         onlyIntegers
       });
       expect(result).toEqual({
@@ -344,7 +344,7 @@ describe('TxFormatProvider', () => {
     it('should return amount parsed correctly if the currency is sat', () => {
       spyOn(filterProvider, 'formatFiatAmount').and.returnValue('1,505');
 
-      let result = txFormatProvider.parseAmount(Coin.BTC, 1505, 'sat', {
+      let result = txFormatProvider.parseAmount(Coin.CITY, 1505, 'sat', {
         onlyIntegers: false
       });
       expect(result).toEqual({
@@ -373,7 +373,7 @@ describe('TxFormatProvider', () => {
     });
 
     it('should return amount in unit format', () => {
-      let result = txFormatProvider.satToUnit(12312312, Coin.BTC);
+      let result = txFormatProvider.satToUnit(12312312, Coin.CITY);
       expect(result).toEqual(0.12312312);
     });
   });

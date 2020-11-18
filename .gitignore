@@ -99,3 +99,6 @@ Temporary Items
 Session.vim
 .netrwhist
 *~
+
+jquery.d.ts
+cordova-typings.d.ts

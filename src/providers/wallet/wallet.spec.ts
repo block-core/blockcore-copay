@@ -30,7 +30,7 @@ describe('Provider: Wallet Provider', () => {
   let keyProvider: KeyProvider;
 
   class PersistenceProviderMock {
-    constructor() {}
+    constructor() { }
     getLastAddress() {
       return Promise.resolve('1CVuVALD6Zo7ms24n3iUXv162kvUzsHr69');
     }
@@ -347,7 +347,7 @@ describe('Provider: Wallet Provider', () => {
 
     it("should return the same address if it isn't BCH", () => {
       const address = walletProvider.getAddressView(
-        Coin.BTC,
+        Coin.CITY,
         'livenet',
         '3DTdZeycDBaimjuuknVGrG8fxdLbjsAjXN'
       );
@@ -415,7 +415,7 @@ describe('Provider: Wallet Provider', () => {
     });
     it('should return main address if gap reached', () => {
       const wallet: WalletMock = new WalletMock();
-      wallet.createAddress = ({}, cb) => {
+      wallet.createAddress = ({ }, cb) => {
         return cb(new Error('MAIN_ADDRESS_GAP_REACHED'));
       };
       const force = true;
@@ -1246,7 +1246,7 @@ describe('Provider: Wallet Provider', () => {
     });
 
     it('Should return bitcoin if coin is btc', () => {
-      const coin = Coin.BTC;
+      const coin = Coin.CITY;
       const protocol = walletProvider.getProtocolHandler(coin);
       expect(protocol).toEqual('bitcoin');
     });

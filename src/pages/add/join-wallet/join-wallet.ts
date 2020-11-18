@@ -139,12 +139,12 @@ export class JoinWalletPage {
     this.isOpenSelector = true;
     const eligibleWallets = this.keyId
       ? this.profileProvider.getWalletsFromGroup({
-          keyId: this.keyId,
-          coin: 'eth',
-          network: 'testnet', // TODO livenet
-          m: 1,
-          n: 1
-        })
+        keyId: this.keyId,
+        coin: 'eth',
+        network: 'testnet', // TODO livenet
+        m: 1,
+        n: 1
+      })
       : [];
 
     const walletSelector = this.actionSheetProvider.createInfoSheet(
@@ -214,7 +214,7 @@ export class JoinWalletPage {
         this.derivationPathByDefault =
           this.coin == 'bch'
             ? this.derivationPathHelperProvider.defaultBCH
-            : this.derivationPathHelperProvider.defaultBTC;
+            : this.derivationPathHelperProvider.defaultCITY;
 
         this.setDerivationPath(walletData.network);
 
@@ -334,7 +334,7 @@ export class JoinWalletPage {
       if (
         this.coin == 'bch' &&
         this.derivationPathHelperProvider.parsePath(derivationPath).coinCode ==
-          "0'"
+        "0'"
       ) {
         opts.useLegacyCoinType = true;
         this.logger.debug('Using 0 for BCH creation');

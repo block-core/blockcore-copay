@@ -557,7 +557,7 @@ export class WalletDetailsPage {
   }
 
   public canSpeedUpTx(tx): boolean {
-    if (this.wallet.coin !== 'btc') return false;
+    if (this.wallet.coin !== 'city') return false;
 
     const currentTime = moment();
     const txTime = moment(tx.time * 1000);

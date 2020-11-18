@@ -21,7 +21,7 @@ export enum DateRanges {
 }
 
 export interface HistoricalRates {
-  btc: ExchangeRate[];
+  city: ExchangeRate[];
   bch: ExchangeRate[];
 }
 
@@ -88,7 +88,7 @@ export class RateProvider {
     });
   }
 
-  public getRate(code: string, chain?: string, opts?: { rates? }): number {
+  public getRate(code: string, chain?: string, opts?: { rates?}): number {
     const customRate =
       opts && opts.rates && opts.rates[chain] && opts.rates[chain][code];
     if (customRate) return customRate;
@@ -96,13 +96,13 @@ export class RateProvider {
     if (
       !this.rates[chain][code] &&
       this.rates[chain]['USD'] &&
-      this.rates['btc'][code] &&
-      this.rates['btc']['USD'] &&
-      this.rates['btc']['USD'] > 0
+      this.rates['city'][code] &&
+      this.rates['city']['USD'] &&
+      this.rates['city']['USD'] > 0
     ) {
       const newRate = +(
-        (this.rates[chain]['USD'] * this.rates['btc'][code]) /
-        this.rates['btc']['USD']
+        (this.rates[chain]['USD'] * this.rates['city'][code]) /
+        this.rates['city']['USD']
       ).toFixed(2);
       return newRate;
     }
@@ -132,7 +132,7 @@ export class RateProvider {
     satoshis: number,
     code: string,
     chain,
-    opts?: { customRate?: number; rates? }
+    opts?: { customRate?: number; rates?}
   ): number {
     if (!this.isCoinAvailable(chain)) {
       return null;
@@ -150,7 +150,7 @@ export class RateProvider {
     amount: number,
     code: string,
     chain,
-    opts?: { rates? }
+    opts?: { rates?}
   ): number {
     if (!this.isCoinAvailable(chain)) {
       return null;
@@ -190,9 +190,8 @@ export class RateProvider {
     ts: string
   ): Promise<any> {
     return new Promise(resolve => {
-      const url = `${
-        this.bwsURL
-      }/v1/fiatrates/${currency}?coin=${coin}&ts=${ts}`;
+      const url = `${this.bwsURL
+        }/v1/fiatrates/${currency}?coin=${coin}&ts=${ts}`;
       this.http.get(url).subscribe(data => {
         resolve(data);
       });

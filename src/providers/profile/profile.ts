@@ -383,8 +383,7 @@ export class ProfileProvider {
       date = new Date(Number(groupBackupInfo.timestamp));
 
     this.logger.info(
-      `Binding wallet: ${wallet.id} - Backed up: ${!needsBackup} ${
-        date ? date : ''
+      `Binding wallet: ${wallet.id} - Backed up: ${!needsBackup} ${date ? date : ''
       } - Encrypted: ${wallet.isPrivKeyEncrypted} - Token: ${!!wallet
         .credentials.token}`
     );
@@ -434,7 +433,7 @@ export class ProfileProvider {
           return;
         }
         wallet.setNotificationsInterval(this.UPDATE_PERIOD);
-        wallet.openWallet(() => {});
+        wallet.openWallet(() => { });
       }
     );
     this.events.subscribe('Local/ConfigUpdate', opts => {
@@ -487,7 +486,7 @@ export class ProfileProvider {
         (wallet.n == 1 && wallet.credentials.addressType == 'P2PKH') ||
         (wallet.credentials.addressType == 'P2WPKH' &&
           derivationStrategy == 'BIP44' &&
-          (chain == 'btc' || (chain == 'bch' && coinCode == "145'")))
+          (chain == 'city' || (chain == 'bch' && coinCode == "145'")))
       ) {
         return true;
       }
@@ -495,7 +494,7 @@ export class ProfileProvider {
         (wallet.n > 1 && wallet.credentials.addressType == 'P2SH') ||
         (wallet.credentials.addressType == 'P2WSH' &&
           derivationStrategy == 'BIP48' &&
-          (chain == 'btc' || (chain == 'bch' && coinCode == "145'")))
+          (chain == 'city' || (chain == 'bch' && coinCode == "145'")))
       ) {
         return true;
       }
@@ -1090,6 +1089,7 @@ export class ProfileProvider {
   // opts.words opts.xPrivKey
   private serverAssistedImport(opts): Promise<any> {
     return new Promise((resolve, reject) => {
+
       this.bwcProvider.Client.serverAssistedImport(
         opts,
         {
@@ -1504,7 +1504,7 @@ export class ProfileProvider {
                   const prefs = {
                     email: config.emailNotifications.email,
                     language: this.languageProvider.getCurrent(),
-                    unit: 'btc' // deprecated
+                    unit: 'city' // deprecated
                   };
 
                   data.walletClient.preferences = _.assign(
@@ -1678,8 +1678,7 @@ export class ProfileProvider {
 
   private _createMultisigEthWallet(ethWallet, multisigEthInfo) {
     this.logger.debug(
-      `Creating ETH multisig wallet ${multisigEthInfo.walletName} for ${
-        ethWallet.id
+      `Creating ETH multisig wallet ${multisigEthInfo.walletName} for ${ethWallet.id
       }:`
     );
     const multisigEthCredentials = ethWallet.credentials.getMultisigEthCredentials(

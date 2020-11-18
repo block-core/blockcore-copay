@@ -49,7 +49,7 @@ export class AltCurrencyPage {
         isoCode: 'LTL'
       },
       {
-        isoCode: 'BTC'
+        isoCode: 'CITY'
       },
       {
         isoCode: 'BCH'
@@ -77,7 +77,7 @@ export class AltCurrencyPage {
 
   ionViewWillEnter() {
     this.rate
-      .whenRatesAvailable('btc')
+      .whenRatesAvailable('city')
       .then(() => {
         this.completeAlternativeList = this.rate.listAlternatives(true);
         let idx = _.keyBy(this.unusedCurrencyList, 'isoCode');
@@ -157,9 +157,8 @@ export class AltCurrencyPage {
 
   private showErrorAndRemoveAltCurrency(altCurrency): void {
     const title = this.translate.instant('Error');
-    const msg = `${altCurrency.name} (${
-      altCurrency.isoCode
-    }) is no longer supported. Please select another alternative currency`;
+    const msg = `${altCurrency.name} (${altCurrency.isoCode
+      }) is no longer supported. Please select another alternative currency`;
     this.errorsProvider.showDefaultError(msg, title, () => {
       this.lastUsedAltCurrencyList = _.reject(this.lastUsedAltCurrencyList, [
         'isoCode',
@@ -167,7 +166,7 @@ export class AltCurrencyPage {
       ]);
       this.persistenceProvider
         .setLastCurrencyUsed(JSON.stringify(this.lastUsedAltCurrencyList))
-        .then(() => {});
+        .then(() => { });
     });
   }
 
@@ -185,7 +184,7 @@ export class AltCurrencyPage {
     this.lastUsedAltCurrencyList = this.lastUsedAltCurrencyList.slice(0, 3);
     this.persistenceProvider
       .setLastCurrencyUsed(JSON.stringify(this.lastUsedAltCurrencyList))
-      .then(() => {});
+      .then(() => { });
   }
 
   public findCurrency(): void {

@@ -112,7 +112,7 @@ export class CreateWalletPage implements OnInit {
     this.derivationPathByDefault = this.isShared
       ? this.coin === 'bch'
         ? this.derivationPathHelperProvider.defaultMultisigBCH
-        : this.derivationPathHelperProvider.defaultMultisigBTC
+        : this.derivationPathHelperProvider.defaultMultisigCITY
       : this.bwcProvider.getCore().Deriver.pathFor(this.coin, 'livenet');
     this.derivationPathForTestnet = this.bwcProvider
       .getCore()
@@ -426,13 +426,13 @@ export class CreateWalletPage implements OnInit {
     this.isOpenSelector = true;
     const eligibleWallets = this.keyId
       ? this.profileProvider.getWalletsFromGroup({
-          keyId: this.keyId,
-          hasFunds: true,
-          coin: 'eth',
-          network: 'testnet', // TODO livenet
-          m: 1,
-          n: 1
-        })
+        keyId: this.keyId,
+        hasFunds: true,
+        coin: 'eth',
+        network: 'testnet', // TODO livenet
+        m: 1,
+        n: 1
+      })
       : [];
 
     const walletSelector = this.actionSheetProvider.createInfoSheet(

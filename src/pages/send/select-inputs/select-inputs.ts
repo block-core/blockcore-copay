@@ -69,7 +69,7 @@ export class SelectInputsPage {
     private configProvider: ConfigProvider
   ) {
     this.bitcore = {
-      btc: this.bwcProvider.getBitcore(),
+      city: this.bwcProvider.getBitcore(),
       bch: this.bwcProvider.getBitcoreCash()
     };
     this.wallet = this.navParams.data.wallet;
@@ -251,7 +251,7 @@ export class SelectInputsPage {
     );
     const isValid =
       this.currencyProvider.getChain(this.wallet.coin).toLowerCase() ==
-        addrData.coin && addrData.network == this.wallet.network;
+      addrData.coin && addrData.network == this.wallet.network;
 
     if (isValid) {
       this.invalidAddress = false;
@@ -382,8 +382,8 @@ export class SelectInputsPage {
   public canContinue() {
     return this.recipient
       ? (this.selectedInputs && this.selectedInputs.length <= 0) ||
-          (this.recipient.amountToShow &&
-            this.recipient.amountToShow > this.totalAmount)
+      (this.recipient.amountToShow &&
+        this.recipient.amountToShow > this.totalAmount)
       : true;
   }
 

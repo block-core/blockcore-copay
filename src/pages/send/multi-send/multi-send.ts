@@ -71,7 +71,7 @@ export class MultiSendPage {
     private errorsProvider: ErrorsProvider
   ) {
     this.bitcore = {
-      btc: this.bwcProvider.getBitcore(),
+      city: this.bwcProvider.getBitcore(),
       bch: this.bwcProvider.getBitcoreCash()
     };
     this.isDisabledContinue = true;
@@ -271,7 +271,7 @@ export class MultiSendPage {
     );
     const isValid =
       this.currencyProvider.getChain(this.wallet.coin).toLowerCase() ==
-        addrData.coin && addrData.network == this.wallet.network;
+      addrData.coin && addrData.network == this.wallet.network;
 
     if (isValid) {
       this.invalidAddress = false;

@@ -74,6 +74,11 @@ export class ExchangeRates {
     this.rateProvider
       .fetchHistoricalRates(this.fiatIsoCode, DateRanges.Day)
       .then(response => {
+
+        if (!response) {
+          return;
+        }
+
         _.forEach(this.coins, (coin, index) => {
           if (response[coin.unitCode])
             this.update(index, response[coin.unitCode]);

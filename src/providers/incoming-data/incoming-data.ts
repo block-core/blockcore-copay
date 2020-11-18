@@ -58,7 +58,7 @@ export class IncomingDataProvider {
         addressbookEntry:
           data.redirTo == 'AddressbookAddPage' ? data.value : null,
         toAddress: data.redirTo == 'AmountPage' ? data.value : null,
-        coin: data.coin ? data.coin : 'btc',
+        coin: data.coin ? data.coin : 'city',
         privateKey: data.redirTo == 'PaperWalletPage' ? data.value : null
       };
       nextView = {
@@ -344,7 +344,7 @@ export class IncomingDataProvider {
     this.logger.debug('Incoming-data: Bitcoin URI');
     let amountFromRedirParams =
       redirParams && redirParams.amount ? redirParams.amount : '';
-    const coin = Coin.BTC;
+    const coin = Coin.CITY;
     let parsed = this.bwcProvider.getBitcore().URI(data);
     let address = parsed.address ? parsed.address.toString() : '';
     let message = parsed.message;
@@ -484,7 +484,7 @@ export class IncomingDataProvider {
     redirParams?: RedirParams
   ): void {
     this.logger.debug('Incoming-data: Bitcoin plain address');
-    const coin = Coin.BTC;
+    const coin = Coin.CITY;
     if (redirParams && redirParams.activePage === 'ScanPage') {
       this.showMenu({
         data,

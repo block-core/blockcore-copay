@@ -8,7 +8,6 @@ import { FormatCurrencyPipe } from '../../pipes/format-currency';
 // Providers
 import {
   AppProvider,
-  BwcProvider,
   ExternalLinkProvider,
   FeedbackProvider,
   GiftCardProvider,
@@ -104,7 +103,6 @@ export class HomePage {
     private configProvider: ConfigProvider,
     private events: Events,
     private releaseProvider: ReleaseProvider,
-    private bwcProvider: BwcProvider,
     private platformProvider: PlatformProvider
   ) {
     this.logger.info('Loaded: HomePage');
@@ -137,7 +135,7 @@ export class HomePage {
     if (this.platformProvider.isElectron) this.checkNewRelease();
     this.showCoinbase = !!config.showIntegration['coinbase'];
     this.setIntegrations();
-    this.loadAds();
+    // this.loadAds();
     this.fetchAdvertisements();
     this.fetchGiftCardAdvertisement();
   }
@@ -148,83 +146,83 @@ export class HomePage {
     this.giftCardProvider.getCountry();
   }
 
-  private async loadAds() {
-    const client = this.bwcProvider.getClient(null, {});
+  // private async loadAds() {
+  //   const client = this.bwcProvider.getClient(null, {});
 
-    client.getAdvertisements(
-      { testing: this.testingAdsEnabled },
-      (err, ads) => {
-        if (err) throw err;
+  //   client.getAdvertisements(
+  //     { testing: this.testingAdsEnabled },
+  //     (err, ads) => {
+  //       if (err) throw err;
 
-        if (this.testingAdsEnabled) {
-          _.forEach(ads, ad => {
-            const alreadyVisible = this.testingAds.find(
-              a => a.name === ad.name
-            );
-            this.persistenceProvider
-              .getAdvertisementDismissed(ad.name)
-              .then((value: string) => {
-                if (value === 'dismissed') {
-                  return;
-                }
+  //       if (this.testingAdsEnabled) {
+  //         _.forEach(ads, ad => {
+  //           const alreadyVisible = this.testingAds.find(
+  //             a => a.name === ad.name
+  //           );
+  //           this.persistenceProvider
+  //             .getAdvertisementDismissed(ad.name)
+  //             .then((value: string) => {
+  //               if (value === 'dismissed') {
+  //                 return;
+  //               }
 
-                let link = this.getAdPageOrLink(ad.linkUrl);
+  //               let link = this.getAdPageOrLink(ad.linkUrl);
 
-                !alreadyVisible &&
-                  this.verifySignature(ad) &&
-                  ad.isTesting &&
-                  this.testingAds.push({
-                    name: ad.name,
-                    advertisementId: ad.advertisementId,
-                    country: ad.country,
-                    title: ad.title,
-                    body: ad.body,
-                    app: ad.app,
-                    linkText: ad.linkText,
-                    link,
-                    imgSrc: ad.imgUrl,
-                    signature: ad.signature,
-                    isTesting: ad.isTesting,
-                    dismissible: true
-                  });
-              });
-          });
-        } else {
-          _.forEach(ads, ad => {
-            const alreadyVisible = this.advertisements.find(
-              a => a.name === ad.name
-            );
-            this.persistenceProvider
-              .getAdvertisementDismissed(ad.name)
-              .then((value: string) => {
-                if (value === 'dismissed') {
-                  return;
-                }
+  //               !alreadyVisible &&
+  //                 this.verifySignature(ad) &&
+  //                 ad.isTesting &&
+  //                 this.testingAds.push({
+  //                   name: ad.name,
+  //                   advertisementId: ad.advertisementId,
+  //                   country: ad.country,
+  //                   title: ad.title,
+  //                   body: ad.body,
+  //                   app: ad.app,
+  //                   linkText: ad.linkText,
+  //                   link,
+  //                   imgSrc: ad.imgUrl,
+  //                   signature: ad.signature,
+  //                   isTesting: ad.isTesting,
+  //                   dismissible: true
+  //                 });
+  //             });
+  //         });
+  //       } else {
+  //         _.forEach(ads, ad => {
+  //           const alreadyVisible = this.advertisements.find(
+  //             a => a.name === ad.name
+  //           );
+  //           this.persistenceProvider
+  //             .getAdvertisementDismissed(ad.name)
+  //             .then((value: string) => {
+  //               if (value === 'dismissed') {
+  //                 return;
+  //               }
 
-                let link = this.getAdPageOrLink(ad.linkUrl);
+  //               let link = this.getAdPageOrLink(ad.linkUrl);
 
-                !alreadyVisible &&
-                  this.verifySignature(ad) &&
-                  this.advertisements.push({
-                    name: ad.name,
-                    country: ad.country,
-                    advertisementId: ad.advertisementId,
-                    title: ad.title,
-                    body: ad.body,
-                    app: ad.app,
-                    linkText: ad.linkText,
-                    link,
-                    imgSrc: ad.imgUrl,
-                    signature: ad.signature,
-                    isTesting: ad.isTesting,
-                    dismissible: true
-                  });
-              });
-          });
-        }
-      }
-    );
-  }
+  //               !alreadyVisible &&
+  //                 this.verifySignature(ad) &&
+  //                 this.advertisements.push({
+  //                   name: ad.name,
+  //                   country: ad.country,
+  //                   advertisementId: ad.advertisementId,
+  //                   title: ad.title,
+  //                   body: ad.body,
+  //                   app: ad.app,
+  //                   linkText: ad.linkText,
+  //                   link,
+  //                   imgSrc: ad.imgUrl,
+  //                   signature: ad.signature,
+  //                   isTesting: ad.isTesting,
+  //                   dismissible: true
+  //                 });
+  //             });
+  //         });
+  //       }
+  //     }
+  //   );
+  // }
 
   getAdPageOrLink(link) {
     let linkTo;
@@ -264,39 +262,39 @@ export class HomePage {
       });
   }
 
-  private verifySignature(ad): boolean {
-    var adMessage = JSON.stringify({
-      advertisementId: ad.advertisementId,
-      name: ad.name,
-      title: ad.title,
-      type: 'standard',
-      country: ad.country,
-      body: ad.body,
-      imgUrl: ad.imgUrl,
-      linkText: ad.linkText,
-      linkUrl: ad.linkUrl,
-      app: ad.app
-    });
+  // private verifySignature(ad): boolean {
+  //   var adMessage = JSON.stringify({
+  //     advertisementId: ad.advertisementId,
+  //     name: ad.name,
+  //     title: ad.title,
+  //     type: 'standard',
+  //     country: ad.country,
+  //     body: ad.body,
+  //     imgUrl: ad.imgUrl,
+  //     linkText: ad.linkText,
+  //     linkUrl: ad.linkUrl,
+  //     app: ad.app
+  //   });
 
-    const config = this.configProvider.getDefaults();
-    const pubKey = config.adPubKey.pubkey;
-    if (!pubKey) return false;
+  //   const config = this.configProvider.getDefaults();
+  //   const pubKey = config.adPubKey.pubkey;
+  //   if (!pubKey) return false;
 
-    const b = this.bwcProvider.getBitcore();
-    const ECDSA = b.crypto.ECDSA;
-    const Hash = b.crypto.Hash;
+  //   const b = this.bwcProvider.getBitcore();
+  //   const ECDSA = b.crypto.ECDSA;
+  //   const Hash = b.crypto.Hash;
 
-    const sigObj = b.crypto.Signature.fromString(ad.signature);
-    const _hashbuf = Hash.sha256(Buffer.from(adMessage));
-    const verificationResult = ECDSA.verify(
-      _hashbuf,
-      sigObj,
-      new b.PublicKey(pubKey),
-      'little'
-    );
+  //   const sigObj = b.crypto.Signature.fromString(ad.signature);
+  //   const _hashbuf = Hash.sha256(Buffer.from(adMessage));
+  //   const verificationResult = ECDSA.verify(
+  //     _hashbuf,
+  //     sigObj,
+  //     new b.PublicKey(pubKey),
+  //     'little'
+  //   );
 
-    return verificationResult;
-  }
+  //   return verificationResult;
+  // }
 
   private updateTotalBalance(data) {
     if (!data) return;
@@ -402,31 +400,31 @@ export class HomePage {
     const card: Advertisement =
       this.cardExperimentEnabled && this.isCordova
         ? {
-            name: 'bitpay-card',
-            title: this.translate.instant('Get the BitPay Card'),
-            body: this.translate.instant(
-              'Designed for people who want to live life on crypto.'
-            ),
-            app: 'bitpay',
-            linkText: this.translate.instant('Order Now'),
-            link: BitPayCardIntroPage,
-            isTesting: false,
-            dismissible: true,
-            imgSrc: 'assets/img/bitpay-card/bitpay-card-mc-angled-plain.svg'
-          }
+          name: 'bitpay-card',
+          title: this.translate.instant('Get the BitPay Card'),
+          body: this.translate.instant(
+            'Designed for people who want to live life on crypto.'
+          ),
+          app: 'bitpay',
+          linkText: this.translate.instant('Order Now'),
+          link: BitPayCardIntroPage,
+          isTesting: false,
+          dismissible: true,
+          imgSrc: 'assets/img/bitpay-card/bitpay-card-mc-angled-plain.svg'
+        }
         : {
-            name: 'bitpay-card',
-            title: this.translate.instant('Coming soon'),
-            body: this.translate.instant(
-              'Join the waitlist and be first to experience the new card.'
-            ),
-            app: 'bitpay',
-            linkText: this.translate.instant('Notify Me'),
-            link: PhaseOneCardIntro,
-            isTesting: false,
-            dismissible: true,
-            imgSrc: 'assets/img/icon-bpcard.svg'
-          };
+          name: 'bitpay-card',
+          title: this.translate.instant('Coming soon'),
+          body: this.translate.instant(
+            'Join the waitlist and be first to experience the new card.'
+          ),
+          app: 'bitpay',
+          linkText: this.translate.instant('Notify Me'),
+          link: PhaseOneCardIntro,
+          isTesting: false,
+          dismissible: true,
+          imgSrc: 'assets/img/icon-bpcard.svg'
+        };
     const alreadyVisible = this.advertisements.find(
       a => a.name === 'bitpay-card'
     );
@@ -443,8 +441,8 @@ export class HomePage {
           : this.translate.instant('Connect your Coinbase!'),
         body: this.hasOldCoinbaseSession
           ? this.translate.instant(
-              'Reconnect to quickly withdraw and deposit funds.'
-            )
+            'Reconnect to quickly withdraw and deposit funds.'
+          )
           : this.translate.instant('Easily deposit and withdraw funds.'),
         app: 'bitpay',
         linkText: this.hasOldCoinbaseSession
@@ -462,10 +460,10 @@ export class HomePage {
     const discountText =
       discount.type === 'flatrate'
         ? `${this.formatCurrencyPipe.transform(
-            discount.amount,
-            discountedCard.currency,
-            'minimal'
-          )}`
+          discount.amount,
+          discountedCard.currency,
+          'minimal'
+        )}`
         : `${discount.amount}%`;
     const advertisementName = getGiftCardAdvertisementName(discountedCard);
     const alreadyVisible = this.advertisements.find(
@@ -475,9 +473,8 @@ export class HomePage {
       this.advertisements.unshift({
         name: advertisementName,
         title: `${discountText} off ${discountedCard.displayName}`,
-        body: `Save ${discountText} off ${
-          discountedCard.displayName
-        } gift cards. Limited time offer.`,
+        body: `Save ${discountText} off ${discountedCard.displayName
+          } gift cards. Limited time offer.`,
         app: 'bitpay',
         linkText: 'Buy Now',
         link: BuyCardPage,
@@ -530,7 +527,7 @@ export class HomePage {
   }
 
   public doRefresh(refresher): void {
-    this.loadAds();
+    // this.loadAds();
     this.fetchAdvertisements();
     this.preFetchWallets();
     setTimeout(() => {
@@ -736,7 +733,6 @@ export class HomePage {
 }
 
 function getGiftCardAdvertisementName(discountedCard: CardConfig): string {
-  return `${discountedCard.discounts[0].code}-${
-    discountedCard.name
-  }-gift-card-discount`;
+  return `${discountedCard.discounts[0].code}-${discountedCard.name
+    }-gift-card-discount`;
 }
