@@ -195,7 +195,7 @@ export class ConfigProvider {
         copay: {
           ios: 'https://itunes.apple.com/app/copay-bitcoin-wallet/id951330296',
           android:
-            'https://play.google.com/store/apps/details?id=com.bitpay.copay',
+            'https://play.google.com/store/apps/details?id=net.blockcore.wallet.city',
           wp: ''
         }
       },

@@ -1,6 +1,6 @@
 {
-  "name": "copay",
-  "description": "A Secure Bitcoin Wallet",
+  "name": "citycoin",
+  "description": "A City Coin Wallet",
   "author": "BitPay",
   "version": "11.0.4",
   "keywords": [
@@ -12,7 +12,7 @@
     "bitcore"
   ],
   "main": "electron/main.js",
-  "title": "Copay",
+  "title": "CityCoin",
   "user-agent": "%name %ver (%osinfo)",
   "webkit": {
     "page-cache": false,
@@ -21,14 +21,14 @@
   },
   "dom_storage_quota": 200,
   "id": "jid1-x7bV5evAaI1P9Q",
-  "homepage": "https://copay.io",
+  "homepage": "https://www.city-chain.org",
   "license": "MIT",
   "repository": {
-    "url": "git://github.com/bitpay/copay.git",
+    "url": "git://github.com/block-core/blockcore-copay.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/bitpay/copay/issues"
+    "url": "https://github.com/block-core/blockcore-copay/issues"
   },
   "scripts": {
     "postinstall": "npm run env:dev && npm run prompt",
@@ -248,7 +248,7 @@
       "cordova-custom-config": {},
       "cordova-plugin-customurlscheme-ng": {
         "URL_SCHEME": "bitcoin",
-        "SECOND_URL_SCHEME": "copay",
+        "SECOND_URL_SCHEME": "citycoin",
         "THIRD_URL_SCHEME": "bitcoincash",
         "FOURTH_URL_SCHEME": "bchtest",
         "FIFTH_URL_SCHEME": "ethereum",
@@ -258,7 +258,7 @@
         "ANDROID_PATHPREFIX": ""
       },
       "cordova-plugin-fcm-ng": {
-        "PAGE_LINK_DOMAIN": "copay.page.link"
+        "PAGE_LINK_DOMAIN": "citycoin.page.link"
       },
       "cordova-plugin-globalization": {},
       "cordova-plugin-inappbrowser": {},

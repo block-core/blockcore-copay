@@ -1,78 +1,35 @@
 {
   "project_info": {
-    "project_number": "149194066736",
-    "firebase_url": "https://bitpay-wallet.firebaseio.com",
-    "project_id": "bitpay-wallet",
-    "storage_bucket": "bitpay-wallet.appspot.com"
+    "project_number": "645274127405",
+    "firebase_url": "https://city-coin-wallet.firebaseio.com",
+    "project_id": "city-coin-wallet",
+    "storage_bucket": "city-coin-wallet.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:149194066736:android:6de8942b48fea047",
+        "mobilesdk_app_id": "1:645274127405:android:ccce1a7a7bf8c1430d3ca4",
         "android_client_info": {
-          "package_name": "com.bitpay.copay"
+          "package_name": "net.blockcore.wallet.city"
         }
       },
       "oauth_client": [
         {
-          "client_id": "149194066736-1gf0d9nk288dke5jdiuj8unkplhl8nco.apps.googleusercontent.com",
+          "client_id": "645274127405-4klrhsct38pl075p95lovc4pmh0e1l1n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBiEzX0eX2gUm6nQfpkyIM34_4YZsuGDwo"
+          "current_key": "AIzaSyDUdy_S3WhLbDlZRwTIYih7lfHO2zwxmUQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "149194066736-1gf0d9nk288dke5jdiuj8unkplhl8nco.apps.googleusercontent.com",
+              "client_id": "645274127405-4klrhsct38pl075p95lovc4pmh0e1l1n.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "149194066736-e4k6hghiu36vnvsabij4tr39d9d4bc68.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.bitpay.fakeapp"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:149194066736:android:64dc8a200f13f9ee",
-        "android_client_info": {
-          "package_name": "com.bitpay.wallet"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "149194066736-1gf0d9nk288dke5jdiuj8unkplhl8nco.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBiEzX0eX2gUm6nQfpkyIM34_4YZsuGDwo"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "149194066736-1gf0d9nk288dke5jdiuj8unkplhl8nco.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "149194066736-e4k6hghiu36vnvsabij4tr39d9d4bc68.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.bitpay.fakeapp"
-              }
             }
           ]
         }

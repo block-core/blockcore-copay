@@ -148,7 +148,7 @@ npm run final:desktop
 Per-user application data directory for Copay or BitPay distribution.
 
 ```sh
-"~/Library/Containers/com.bitpay.copay.desktop2/Data/.copay"
+"~/Library/Containers/net.blockcore.wallet.city.desktop2/Data/.copay"
 # or
 "~/Library/Containers/com.bitpay.wallet.desktop/Data/.bitpay"
 ```

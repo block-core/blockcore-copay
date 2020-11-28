@@ -41,7 +41,7 @@ builder
         provisioningProfile: './*PACKAGENAME*-embedded.provisionprofile',
         extendInfo: {
           NSCameraUsageDescription:
-            'Scan a Bitcoin Address directly to your Wallet and send funds to it'
+            'Scan a City Coin address directly to your Wallet and send funds to it'
         },
         target: ['mas']
       },

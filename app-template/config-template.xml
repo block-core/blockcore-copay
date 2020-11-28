@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.bitpay.*BUNDLENAME*"
+<widget id="*PACKAGENAMEID*"
   version="*VERSION*"
   android-versionCode="*ANDROIDVERSION*"
   ios-CFBundleVersion="*VERSION*"
@@ -8,8 +8,8 @@
     <description>
       *PURPOSELINE*
     </description>
-    <author email="support@bitpay.com" href="*URL*">
-        BitPay Inc.
+    <author email="post@city-chain.org" href="*URL*">
+        City Chain Labs
     </author>
     <content src="index.html" />
     <access origin="https://city.bws.blockcore.net" />
