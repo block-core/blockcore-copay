@@ -5,7 +5,7 @@ import { Logger } from '../../providers/logger/logger';
 
 @Injectable()
 export class ReleaseProvider {
-  private latestReleaseAPIUrl = 'https://bws.bitpay.com/bws/api/latest-version';
+  private latestReleaseAPIUrl = 'https://city.bws.blockcore.net/bws/api/latest-version';
   private appVersion: string;
 
   constructor(

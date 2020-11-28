@@ -82,6 +82,7 @@
     </author>
     <content src="index.html" />
     <access origin="https://city.bws.blockcore.net" />
+    <access origin="https://city.api.blockcore.net" />
     <access origin="https://bws.bitpay.com" />
     <access origin="https://bitpay.com" />
     <access origin="https://test.bitpay.com" />
