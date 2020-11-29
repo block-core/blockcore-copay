@@ -12,7 +12,7 @@
     "bitcore"
   ],
   "main": "electron/main.js",
-  "title": "CityCoin",
+  "title": "City Coin",
   "user-agent": "%name %ver (%osinfo)",
   "webkit": {
     "page-cache": false,
