@@ -65,7 +65,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
       paymentCode: 'BIP73',
       protocolPrefix: { livenet: 'bitcoin', testnet: 'bitcoin' },
       ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/btc',
-      blockExplorerUrls: 'bitpay.com/insight/#/BTC/'
+      blockExplorerUrls: 'city.insight.blockcore.net/insight/#/BTC/'
     },
     feeInfo: {
       feeUnit: 'sat/byte',

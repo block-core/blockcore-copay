@@ -113,6 +113,8 @@ npm run clean-all
 npm install
 npm run apply:copay
 npm run prepare:copay
+npm run build:android
+
 npm run final:android
 ```
 
