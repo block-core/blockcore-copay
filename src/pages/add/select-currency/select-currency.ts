@@ -72,6 +72,9 @@ export class SelectCurrencyPage {
       this.navParam.data.isShared || this.navParam.data.isJoin
         ? this.currencyProvider.getMultiSigCoins()
         : this.currencyProvider.getAvailableChains();
+
+    this.availableChains = ['btc']; // Blockcore: Only show a single option.
+
     this.availableTokens = this.currencyProvider.getAvailableTokens();
     for (const chain of this.availableChains) {
       this.coinsSelected[chain] = true;
@@ -202,10 +205,10 @@ export class SelectCurrencyPage {
   public showPairedWalletSelector(token) {
     const eligibleWallets = this.navParam.data.keyId
       ? this.profileProvider.getWalletsFromGroup({
-          keyId: this.navParam.data.keyId,
-          network: 'livenet',
-          pairFor: token
-        })
+        keyId: this.navParam.data.keyId,
+        network: 'livenet',
+        pairFor: token
+      })
       : [];
 
     const walletSelector = this.actionSheetProvider.createInfoSheet(

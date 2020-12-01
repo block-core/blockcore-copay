@@ -44,14 +44,14 @@ export interface CoinOpts {
 
 export const availableCoins: CoinsMap<CoinOpts> = {
   btc: {
-    name: 'Bitcoin',
+    name: 'City Coin',
     chain: 'BTC',
     coin: 'btc',
     unitInfo: {
-      unitName: 'BTC',
+      unitName: 'CITY',
       unitToSatoshi: 100000000,
       unitDecimals: 8,
-      unitCode: 'btc'
+      unitCode: 'city'
     },
     properties: {
       hasMultiSig: true,
@@ -65,7 +65,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
       paymentCode: 'BIP73',
       protocolPrefix: { livenet: 'bitcoin', testnet: 'bitcoin' },
       ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/btc',
-      blockExplorerUrls: 'city.insight.blockcore.net/insight/#/BTC/'
+      blockExplorerUrls: 'city.insight.blockcore.net/#/BTC/'
     },
     feeInfo: {
       feeUnit: 'sat/byte',

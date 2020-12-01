@@ -37,7 +37,7 @@ export class EmailComponent extends ActionSheetParent {
   }
 
   public openPolicy() {
-    let url = 'https://bitpay.com/about/privacy';
+    let url = 'https://city-chain.org/privacy.html#wallet';
     this.externalLinkProvider.open(url);
   }
 }

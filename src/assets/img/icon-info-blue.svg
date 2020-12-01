@@ -9,10 +9,10 @@
             <g id="Header" transform="translate(22.000000, 26.000000)">
                 <g id="Icons/Small-(20px)/Info-(color)">
                     <g>
-                        <circle id="Oval" stroke="#4F6EF7" stroke-width="2" stroke-linecap="square" cx="13.5" cy="13.5" r="13.5"></circle>
-                        <polyline id="Shape" stroke="#4F6EF7" stroke-width="2" stroke-linecap="square" points="11.0454545 12.2727273 13.5 12.2727273 13.5 19.6363636"></polyline>
-                        <path d="M11.0454545,19.6363636 L15.9545455,19.6363636" id="Shape" stroke="#4F6EF7" stroke-width="2" stroke-linecap="square"></path>
-                        <circle id="Oval" fill="#4F6EF7" fill-rule="nonzero" cx="13.5" cy="7.36363636" r="1.22727273"></circle>
+                        <circle id="Oval" stroke="#dfab3c" stroke-width="2" stroke-linecap="square" cx="13.5" cy="13.5" r="13.5"></circle>
+                        <polyline id="Shape" stroke="#dfab3c" stroke-width="2" stroke-linecap="square" points="11.0454545 12.2727273 13.5 12.2727273 13.5 19.6363636"></polyline>
+                        <path d="M11.0454545,19.6363636 L15.9545455,19.6363636" id="Shape" stroke="#dfab3c" stroke-width="2" stroke-linecap="square"></path>
+                        <circle id="Oval" fill="#dfab3c" fill-rule="nonzero" cx="13.5" cy="7.36363636" r="1.22727273"></circle>
                     </g>
                 </g>
             </g>

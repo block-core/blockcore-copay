@@ -33,12 +33,12 @@ export class NoLowFee {
     ) {
       this.logger.debug(
         'Economy Fee setting... disabling link:' +
-          this.elem.nativeElement.innerText
+        this.elem.nativeElement.innerText
       );
       this.popupProvider
         .ionicAlert(
           'Low Fee Error',
-          'Please change your Bitcoin Network Fee Policy setting to Normal or higher to use this service'
+          'Please change your Network Fee Policy setting to Normal or higher to use this service'
         )
         .then(() => {
           this.navCtrl.pop();

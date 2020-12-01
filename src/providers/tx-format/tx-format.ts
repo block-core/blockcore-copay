@@ -57,8 +57,8 @@ export class TxFormatProvider {
     if (isNaN(satoshis)) return undefined;
     return (
       this.formatAmount(coin, satoshis, fullPrecision) +
-      ' ' +
-      coin.toUpperCase()
+      ' CITY'
+      // coin.toUpperCase()
     );
   }
 
@@ -66,7 +66,7 @@ export class TxFormatProvider {
     coin: string,
     satoshis: number,
     code: string,
-    opts?: { rates? }
+    opts?: { rates?}
   ): Promise<string> {
     // TODO not a promise
     return new Promise(resolve => {
@@ -155,8 +155,8 @@ export class TxFormatProvider {
     tx.feeStr = tx.fee
       ? this.formatAmountStr(chain, tx.fee)
       : tx.fees
-      ? this.formatAmountStr(chain, tx.fees)
-      : 'N/A';
+        ? this.formatAmountStr(chain, tx.fees)
+        : 'N/A';
     if (tx.amountStr) {
       tx.amountValueStr = tx.amountStr.split(' ')[0];
       tx.amountUnitStr = tx.amountStr.split(' ')[1];
@@ -176,7 +176,7 @@ export class TxFormatProvider {
     coin: Coin,
     amount,
     currency: string,
-    opts?: { onlyIntegers?: boolean; rates? }
+    opts?: { onlyIntegers?: boolean; rates?}
   ) {
     const { alternativeIsoCode } = this.configProvider.get().wallet.settings;
     const { unitToSatoshi, unitDecimals } = this.currencyProvider.getPrecision(
@@ -201,13 +201,13 @@ export class TxFormatProvider {
       amountUnitStr = this.formatAmountStr(coin, amountSat);
       // convert sat to Coin
       amount = (amountSat * satToUnit).toFixed(unitDecimals);
-      currency = coin.toUpperCase();
+      currency = 'CITY'; // coin.toUpperCase();
     } else {
       amountSat = parseInt((amount * unitToSatoshi).toFixed(0), 10);
       amountUnitStr = this.formatAmountStr(coin, amountSat);
       // convert unit to Coin
       amount = (amountSat * satToUnit).toFixed(unitDecimals);
-      currency = coin.toUpperCase();
+      currency = 'CITY'; // coin.toUpperCase();
     }
 
     return {

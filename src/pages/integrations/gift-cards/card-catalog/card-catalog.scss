@@ -50,7 +50,7 @@ card-catalog-page {
     }
 
     &__button {
-      color: #4f6ef7;
+      color: #dfab3c;
     }
 
     display: flex;
@@ -76,7 +76,7 @@ card-catalog-page {
     }
 
     &:after {
-      content: '';
+      content: "";
       height: 1px;
       background: rgba(0, 0, 0, 0.05);
       bottom: 0;

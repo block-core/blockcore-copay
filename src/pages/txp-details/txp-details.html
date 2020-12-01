@@ -1,4 +1,5 @@
-<wide-header-page title="{{'Payment Proposal'|translate}}" [hasSlideButton]="(tx && !tx.removed) && (tx && tx.pendingForUs && canSign && !paymentExpired) && isCordova">
+<wide-header-page title="{{'Payment Proposal'|translate}}"
+  [hasSlideButton]="(tx && !tx.removed) && (tx && tx.pendingForUs && canSign && !paymentExpired) && isCordova">
   <ion-buttons left>
     <button class="close-container disable-hover" (click)="close()" ion-button>
       <ion-icon ios="md-close" md="md-close"></ion-icon>
@@ -12,7 +13,8 @@
         <div class="header-container">
           <div class="amount-label">
             <div class="amount">
-              {{tx.amountValueStr}} {{tx.amountUnitStr | uppercase}}
+              {{tx.amountValueStr}} CITY
+              <!--{{tx.amountUnitStr | uppercase}}-->
             </div>
             <div class="alternative" *ngIf="tx.alternativeAmountStr">{{tx.alternativeAmountStr}}</div>
           </div>
@@ -73,9 +75,11 @@
         </ion-note>
       </ion-item>
 
-      <div class="line-divider" *ngIf="(tx && !tx.removed) && isShared && (tx && tx.pendingForUs) && !paymentExpired"></div>
+      <div class="line-divider" *ngIf="(tx && !tx.removed) && isShared && (tx && tx.pendingForUs) && !paymentExpired">
+      </div>
 
-      <div padding class="proposal-rejection" *ngIf="(tx && !tx.removed) && isShared && (tx && tx.pendingForUs) && !paymentExpired && !tx.multisigContractAddress">
+      <div padding class="proposal-rejection"
+        *ngIf="(tx && !tx.removed) && isShared && (tx && tx.pendingForUs) && !paymentExpired && !tx.multisigContractAddress">
         <button ion-button clear color="danger" (click)="reject()" [disabled]="loading">
           {{'Reject Payment Proposal'| translate}}
         </button>
@@ -183,7 +187,9 @@
       <div *ngIf="actionList && actionList[0]">
         <ion-item>
           <span>{{'Timeline' | translate}}</span>
-          <div class="timeline-item" [ngClass]="{'action-created' : a.type == 'created' || a.type == 'accept', 'action-rejected' : a.type == 'reject' || a.type == 'failed'}" *ngFor="let a of actionList; let i = index">
+          <div class="timeline-item"
+            [ngClass]="{'action-created' : a.type == 'created' || a.type == 'accept', 'action-rejected' : a.type == 'reject' || a.type == 'failed'}"
+            *ngFor="let a of actionList; let i = index">
             <div class="timeline-content">
               <div class="timeline-content-icon">
                 <div class="rejected" *ngIf="a.type === 'reject' || a.type == 'failed'">!</div>
@@ -201,9 +207,11 @@
         </ion-item>
       </div>
 
-      <div padding class="proposal-deletion" *ngIf="(((tx && !tx.removed) && (tx && tx.canBeRemoved)) || (tx && tx.status == 'accepted' && !tx.broadcastedOn)) && (!isShared || !tx.multisigContractAddress)">
+      <div padding class="proposal-deletion"
+        *ngIf="(((tx && !tx.removed) && (tx && tx.canBeRemoved)) || (tx && tx.status == 'accepted' && !tx.broadcastedOn)) && (!isShared || !tx.multisigContractAddress)">
         <div class="proposal-deletion-help" *ngIf="isShared" translate>
-          * A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 10 minutes have passed since the proposal was created.
+          * A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 10
+          minutes have passed since the proposal was created.
         </div>
         <button ion-button clear color="danger" (click)="remove()" [disabled]="loading">
           {{'Delete Payment Proposal' | translate}}
@@ -214,9 +222,12 @@
   </div>
 
   <div footer-content>
-    <page-slide-to-accept #slideButton *ngIf="(tx && !tx.removed) && (tx && tx.pendingForUs && canSign && !paymentExpired) && isCordova && !(this.isShared && this.tx.coin === 'eth')" [buttonText]="buttonText" (slideDone)="onConfirm()">
+    <page-slide-to-accept #slideButton
+      *ngIf="(tx && !tx.removed) && (tx && tx.pendingForUs && canSign && !paymentExpired) && isCordova && !(this.isShared && this.tx.coin === 'eth')"
+      [buttonText]="buttonText" (slideDone)="onConfirm()">
     </page-slide-to-accept>
-    <ion-toolbar *ngIf="(tx && !tx.removed) && (tx && tx.pendingForUs && canSign && !paymentExpired) && (!isCordova || this.isShared && this.tx.coin === 'eth')">
+    <ion-toolbar
+      *ngIf="(tx && !tx.removed) && (tx && tx.pendingForUs && canSign && !paymentExpired) && (!isCordova || this.isShared && this.tx.coin === 'eth')">
       <button ion-button full class="button-footer" (click)="onConfirm()">{{buttonText}}</button>
     </ion-toolbar>
   </div>

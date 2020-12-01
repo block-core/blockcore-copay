@@ -164,17 +164,17 @@ export function appendCategories(
     .filter(curation => curation.merchants.includes(merchant.displayName));
   const curations = recentlyPurchasedBrandNames.includes(merchant.displayName)
     ? [
-        {
-          displayName: 'Recently Purchased',
-          index: -1,
-          merchantIndex: recentlyPurchasedBrandNames.indexOf(
-            merchant.displayName
-          ),
-          merchants: recentlyPurchasedBrandNames,
-          name: 'recentlyPurchased'
-        },
-        ...baseCurations
-      ]
+      {
+        displayName: 'Recently Purchased',
+        index: -1,
+        merchantIndex: recentlyPurchasedBrandNames.indexOf(
+          merchant.displayName
+        ),
+        merchants: recentlyPurchasedBrandNames,
+        name: 'recentlyPurchased'
+      },
+      ...baseCurations
+    ]
     : baseCurations;
   return {
     ...merchant,
@@ -206,6 +206,6 @@ export function getDiscountTextColor(
   return merchant.theme === '#ffffff' ||
     merchant.theme === '#000000' ||
     (appTheme === 'Dark Mode' && isDark(merchant.theme))
-    ? '#4f6ef7'
+    ? '#dfab3c'
     : merchant.theme;
 }

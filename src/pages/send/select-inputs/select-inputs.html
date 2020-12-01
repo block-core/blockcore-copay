@@ -8,8 +8,10 @@
     <div>
       <div class="send-header-wrapper" *ngIf="!recipient">
         <ion-item class="search-wrapper" [ngClass]="{'invalid': invalidAddress && search != ''}">
-          <ion-input placeholder="{{'Enter {coinName} address' | translate: {coinName: getCoinName(wallet?.coin)} }}" [(ngModel)]="search" (ngModelChange)="processInput()"></ion-input>
-          <ion-icon *ngIf="invalidAddress && search != ''" item-end class="backspace-icon" name="backspace" (click)="search = ''"></ion-icon>
+          <ion-input placeholder="{{'Enter {coinName} address' | translate: {coinName: getCoinName(wallet?.coin)} }}"
+            [(ngModel)]="search" (ngModelChange)="processInput()"></ion-input>
+          <ion-icon *ngIf="invalidAddress && search != ''" item-end class="backspace-icon" name="backspace"
+            (click)="search = ''"></ion-icon>
           <ion-icon item-end class="scan-icon" (click)="openScanner()">
             <img src="assets/img/scan-ico.svg">
           </ion-icon>
@@ -19,13 +21,17 @@
       <ion-list *ngIf="recipient" class="content-list">
         <ion-item-divider class="item-divider-header">
           <span class="ellipsis">{{ 'Recipient' | translate}}</span>
-          <ion-icon class="close-icon pointer" name="ios-close-outline" item-right (click)="removeRecipient()"></ion-icon>
+          <ion-icon class="close-icon pointer" name="ios-close-outline" item-right (click)="removeRecipient()">
+          </ion-icon>
         </ion-item-divider>
         <ion-item (click)="openAmountModal(recipient)" class="recipient">
           <ion-icon class="item-img wallet" item-start>
-            <img *ngIf="recipient.recipientType == 'wallet'" [ngClass]="{ testnet: wallet.network === 'testnet' }" class="icon-wallet" src="assets/img/currencies/{{wallet.coin}}.svg" />
-            <gravatar *ngIf="recipient.recipientType == 'contact'" [name]="recipient.name" [height]="40" [width]="40" [email]="recipient.email" [coin]="wallet.coin" [network]="wallet.network"></gravatar>
-            <img *ngIf="recipient.recipientType == 'address'" class="coin-icon" src="assets/img/icon-{{wallet.coin}}-small.svg" alt="Coin" />
+            <img *ngIf="recipient.recipientType == 'wallet'" [ngClass]="{ testnet: wallet.network === 'testnet' }"
+              class="icon-wallet" src="assets/img/currencies/{{wallet.coin}}.svg" />
+            <gravatar *ngIf="recipient.recipientType == 'contact'" [name]="recipient.name" [height]="40" [width]="40"
+              [email]="recipient.email" [coin]="wallet.coin" [network]="wallet.network"></gravatar>
+            <img *ngIf="recipient.recipientType == 'address'" class="coin-icon"
+              src="assets/img/icon-{{wallet.coin}}-small.svg" alt="Coin" />
           </ion-icon>
           <ion-label>
             <span *ngIf="recipient.recipientType == 'wallet'">{{recipient.name}}</span>
@@ -34,7 +40,8 @@
           </ion-label>
           <ion-note item-end text-end>
             <div *ngIf="recipient.amountToShow" class="amount">
-              {{recipient.amountToShow}} {{wallet.coin | uppercase}}
+              {{recipient.amountToShow}} CITY
+              <!--{{wallet.coin | uppercase}}-->
             </div>
             <div *ngIf="recipient.amountToShow" class="amount-str">
               {{recipient.altAmountStr}}
@@ -77,7 +84,8 @@
           <ion-item (click)="selectInput(input, i)">
             <ion-label padding-left>
               <div class="amount">
-                {{input.amount}} {{wallet.coin | uppercase}}
+                {{input.amount}} CITY
+                <!--{{wallet.coin | uppercase}}-->
               </div>
               <div class="address">
                 {{input.address}}
@@ -89,7 +97,8 @@
       </ion-list>
     </div>
     <div *ngIf="!recipient" class="no-wallet-message">
-      <span translate>To get started, you'll need to enter a valid address or select an existent contact or wallet.</span>
+      <span translate>To get started, you'll need to enter a valid address or select an existent contact or
+        wallet.</span>
       <button clear (click)="openTransferToModal()" ion-button>
         {{'Add an existent contact or wallet' | translate}}
       </button>

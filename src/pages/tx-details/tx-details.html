@@ -10,12 +10,13 @@
         <div class="header-container">
           <div class="amount-label" *ngIf="!(btx.amount === 0 && wallet.coin === 'eth')">
             <div class="amount">
-              {{btx.amountValueStr}} {{btx.amountUnitStr | uppercase}}
+              {{btx.amountValueStr}} CITY
+              <!--{{btx.amountUnitStr | uppercase}}-->
             </div>
-            <div class="alternative">
+            <!-- <div class="alternative">
               <span *ngIf="!btx.fiatRateStr">...</span>
               <span *ngIf="btx.fiatRateStr">{{btx.fiatRateStr}}</span>
-            </div>
+            </div> -->
           </div>
           <div class="sending-label" *ngIf="btx.amount === 0 && wallet.coin === 'eth'">
             <span>{{'Interaction with contract' | translate}}</span>
@@ -26,7 +27,8 @@
       <label-tip class="low-fees" type="warn" *ngIf="btx.action == 'received' && btx.lowAmount">
         <span label-tip-title translate>Amount Too Low To Spend</span>
         <div label-tip-body translate>
-          This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself.
+          This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need
+          a Bitcoin network fee cost comparable to the funds itself.
           <br>
           <a class="label-tip-link" (click)="readMore()" translate>Learn More</a>
         </div>
@@ -129,7 +131,8 @@
       </ion-item>
 
       <div *ngIf="!btx.confirmations || btx.confirmations == 0" class="unconfirmed-message">
-        <a class="positive" (click)="openExternalLink('https://support.bitpay.com/hc/en-us/articles/360025484512-Missing-transactions-Why-is-my-transaction-unconfirmed-')">
+        <a class="positive"
+          (click)="openExternalLink('https://support.bitpay.com/hc/en-us/articles/360025484512-Missing-transactions-Why-is-my-transaction-unconfirmed-')">
           {{'Why is my transaction unconfirmed?' | translate}}
         </a>
       </div>
@@ -140,7 +143,9 @@
         <ion-label stacked>
           <div class="summary-item">{{'Memo' | translate}}</div>
         </ion-label>
-        <ion-textarea class="summary-item-detail" placeholder="{{'Enter a transaction memo' | translate}}" (ionBlur)="saveMemoInfo()" [(ngModel)]="txMemo" name="tx.description" autocomplete="off" autocorrect="off"></ion-textarea>
+        <ion-textarea class="summary-item-detail" placeholder="{{'Enter a transaction memo' | translate}}"
+          (ionBlur)="saveMemoInfo()" [(ngModel)]="txMemo" name="tx.description" autocomplete="off" autocorrect="off">
+        </ion-textarea>
       </ion-item>
 
       <div class="line-divider"></div>
@@ -160,7 +165,8 @@
 
       <ion-item *ngIf="txsUnsubscribedForNotifications">
         <ion-label>{{'Notify me if confirmed' | translate}}</ion-label>
-        <ion-toggle checked="false" *ngIf="!btx.confirmations || btx.confirmations == 0" [(ngModel)]="txNotification.value" (ionChange)="txConfirmNotificationChange()"></ion-toggle>
+        <ion-toggle checked="false" *ngIf="!btx.confirmations || btx.confirmations == 0"
+          [(ngModel)]="txNotification.value" (ionChange)="txConfirmNotificationChange()"></ion-toggle>
       </ion-item>
 
       <div class="line-divider" *ngIf="actionList && actionList[0]"></div>
@@ -169,7 +175,9 @@
         <ion-item detail-none>
           <div>{{'Timeline' | translate}}</div>
         </ion-item>
-        <div class="timeline-item" [ngClass]="{'action-created' : a.type == 'created' || a.type == 'accept', 'action-rejected' : a.type == 'reject'}" *ngFor="let a of actionList; let i = index">
+        <div class="timeline-item"
+          [ngClass]="{'action-created' : a.type == 'created' || a.type == 'accept', 'action-rejected' : a.type == 'reject'}"
+          *ngFor="let a of actionList; let i = index">
           <div class="timeline-content">
             <div class="timeline-content-icon">
               <div class="rejected" *ngIf="a.type === 'reject'">!</div>

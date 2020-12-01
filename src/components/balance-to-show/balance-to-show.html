@@ -2,7 +2,11 @@
   <span class="amount">
     {{ amount }}
   </span>
-  <span class="unit">
-    {{ unit }}
+  <span *ngIf="unit == 'BTC'" class="unit">
+    CITY
+  </span>
+  <span *ngIf="unit != 'BTC'" class="unit">
+    CITY
+    <!--{{ unit }}-->
   </span>
 </div>

@@ -341,7 +341,7 @@ msgstr ""
 msgid "Bitcoin Cash URI"
 msgstr ""
 
-msgid "Bitcoin Network Fee Policy"
+msgid "Network Fee Policy"
 msgstr "ビットコインネットワークの手数料設定"
 
 msgid "Bitcoin URI"

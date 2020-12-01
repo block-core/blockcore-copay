@@ -15,7 +15,8 @@
   </p>
   <ion-note class="amount" item-end text-end>
     <div [ngClass]="{'amount--sent': sent, 'amount--received': received, 'amount--pending': pending}" id="price">
-      {{card.price | number:'1.2-2' }} {{currency}}
+      {{card.price | number:'1.2-2' }} CITY
+      <!--{{currency}}-->
     </div>
     <div class="date">
       {{card.date}}

@@ -341,7 +341,7 @@ msgstr "Endereço Bitcoin Cash"
 msgid "Bitcoin Cash URI"
 msgstr "URI do Bitcoin Cash"
 
-msgid "Bitcoin Network Fee Policy"
+msgid "Network Fee Policy"
 msgstr "Política de taxa de rede Bitcoin"
 
 msgid "Bitcoin URI"

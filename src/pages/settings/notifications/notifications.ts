@@ -169,7 +169,7 @@ export class NotificationsPage {
   }
 
   public openPrivacyPolicy() {
-    const url = 'https://bitpay.com/about/privacy';
+    const url = 'https://city-chain.org/privacy.html#wallet';
     const optIn = true;
     const title = null;
     const message = this.translate.instant('View Privacy Policy');

@@ -15,7 +15,7 @@
                             <mask id="mask-2" fill="white">
                                 <use xlink:href="#path-1"></use>
                             </mask>
-                            <use id="Mask" fill="#4F6EF7" opacity="0.100000001" xlink:href="#path-1"></use>
+                            <use id="Mask" fill="#dfab3c" opacity="0.100000001" xlink:href="#path-1"></use>
                         </g>
                         <g id="move-layer-down" transform="translate(11.000000, 10.000000)" stroke="#204096" stroke-width="2">
                             <path d="M8.5,0 L8.5,14" id="Path"></path>

@@ -180,7 +180,7 @@ export class ConfigProvider {
           url: 'https://bitpay.com/wallet'
         },
         copay: {
-          url: 'https://copay.io/#download'
+          url: 'https://city-chain.org/#cityhub'
         }
       },
 

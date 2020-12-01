@@ -465,8 +465,8 @@ msgstr "Bitcoin Cash Address"
 msgid "Bitcoin Cash URI"
 msgstr "Bitcoin Cash URI"
 
-msgid "Bitcoin Network Fee Policy"
-msgstr "Bitcoin Network Fee Policy"
+msgid "Network Fee Policy"
+msgstr "Network Fee Policy"
 
 msgid "Bitcoin URI"
 msgstr "Bitcoin URI"
@@ -4497,8 +4497,8 @@ msgstr "{{updatingTxHistoryProgress}} transactions downloaded"
 #~ msgid "Base amount"
 #~ msgstr "Base amount"
 
-#~ msgid "Bitcoin network fee policy"
-#~ msgstr "Bitcoin network fee policy"
+#~ msgid "Network Fee Policy"
+#~ msgstr "Network Fee Policy"
 
 #~ msgid "Export wallet"
 #~ msgstr "Export wallet"

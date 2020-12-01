@@ -49,7 +49,7 @@ describe('NotificationsPage', () => {
         instance.openPrivacyPolicy();
 
         expect(instance.externalLinkProvider.open).toHaveBeenCalledWith(
-          'https://bitpay.com/about/privacy',
+          'https://city-chain.org/privacy.html#wallet',
           true,
           null,
           'View Privacy Policy',

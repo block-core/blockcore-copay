@@ -233,7 +233,7 @@ export class SettingsPage {
           {
             message: 'pairingOnly'
           },
-          () => {}
+          () => { }
         );
       }, 100);
     }
@@ -318,7 +318,7 @@ export class SettingsPage {
         {
           message
         },
-        () => {}
+        () => { }
       );
     });
   }
@@ -428,7 +428,7 @@ export class SettingsPage {
   }
 
   public openPrivacyPolicy() {
-    const url = 'https://bitpay.com/about/privacy';
+    const url = 'https://city-chain.org/privacy.html#wallet';
     const optIn = true;
     const title = null;
     const message = this.translate.instant('View Privacy Policy');
@@ -445,7 +445,7 @@ export class SettingsPage {
   }
 
   public openTermsOfUse() {
-    const url = 'https://bitpay.com/legal/terms-of-use';
+    const url = 'https://city-chain.org/terms.html#wallet';
     const optIn = true;
     const title = null;
     const message = this.translate.instant('View Wallet Terms of Use');
