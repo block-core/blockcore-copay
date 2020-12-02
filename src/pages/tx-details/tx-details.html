@@ -51,11 +51,12 @@
             {{btx.feeStr}}
           </div>
           <div class="secondary-note fee-details">
-            {{btx.feeFiatStr}}
+            <!--{{btx.feeFiatStr}}-->
             <span *ngIf="btx.feeRateStr">
               &middot;
               <span>
-                <span *ngIf="btx.feeRateStr">{{btx.feeRateStr}}
+                <span *ngIf="btx.feeRateStr">
+                  <!--{{btx.feeRateStr}}-->
                   <span translate> of total amount</span>
                 </span>
               </span>

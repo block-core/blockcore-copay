@@ -62,7 +62,7 @@
             {{tx.feeStr}}
           </div>
           <div class="secondary-note fee-details">
-            {{tx.feeFiatStr}}
+            <!--{{tx.feeFiatStr}}-->
             <span *ngIf="tx.feeRateStr">
               &middot;
               <span>
@@ -105,7 +105,8 @@
             </ion-col>
 
             <ion-col>
-              <span class="note-container ellipsis">{{wallet.name}}</span>
+              <span class="note-container ellipsis">
+                <!--{{wallet.name}}-->City Coin</span>
             </ion-col>
           </ion-row>
         </ion-note>

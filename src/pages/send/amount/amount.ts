@@ -469,10 +469,10 @@ export class AmountPage {
           this.allowSend = false;
         }
       } else {
-        this.alternativeAmount = this.filterProvider.formatFiatAmount(
-          this.toFiat(result)
-        );
-        this.checkAmountForBitpaycard(this.toFiat(result));
+        // this.alternativeAmount = this.filterProvider.formatFiatAmount(
+        //   this.toFiat(result)
+        // );
+        // this.checkAmountForBitpaycard(this.toFiat(result));
       }
     }
   }
@@ -677,8 +677,8 @@ export class AmountPage {
     const { unitToSatoshi, unitDecimals } = this.availableUnits[this.unitIndex]
       .isFiat
       ? this.currencyProvider.getPrecision(
-          this.availableUnits[this.altUnitIndex].id
-        )
+        this.availableUnits[this.altUnitIndex].id
+      )
       : this.currencyProvider.getPrecision(this.unit.toLowerCase() as Coin);
     this.unitToSatoshi = unitToSatoshi;
     this.satToUnit = 1 / this.unitToSatoshi;
@@ -686,9 +686,9 @@ export class AmountPage {
     this.processAmount();
     this.logger.debug(
       'Update unit coin @amount unit:' +
-        this.unit +
-        ' alternativeUnit:' +
-        this.alternativeUnit
+      this.unit +
+      ' alternativeUnit:' +
+      this.alternativeUnit
     );
   }
 
@@ -738,8 +738,8 @@ export class AmountPage {
       this.fiatCode && this.isSupportedFiat(this.fiatCode)
         ? this.fiatCode
         : this.isSupportedFiat(isoCode)
-        ? isoCode
-        : 'USD';
+          ? isoCode
+          : 'USD';
 
     this.quoteForm = this.formBuilder.group({
       amount: [

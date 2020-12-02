@@ -51,11 +51,11 @@ export const availableCoins: CoinsMap<CoinOpts> = {
       unitName: 'CITY',
       unitToSatoshi: 100000000,
       unitDecimals: 8,
-      unitCode: 'city'
+      unitCode: 'btc'
     },
     properties: {
-      hasMultiSig: true,
-      hasMultiSend: true,
+      hasMultiSig: false,
+      hasMultiSend: false,
       isUtxo: true,
       isERCToken: false,
       isStableCoin: false,
@@ -63,7 +63,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
     },
     paymentInfo: {
       paymentCode: 'BIP73',
-      protocolPrefix: { livenet: 'bitcoin', testnet: 'bitcoin' },
+      protocolPrefix: { livenet: 'city', testnet: 'city' },
       ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/btc',
       blockExplorerUrls: 'city.insight.blockcore.net/#/BTC/'
     },

@@ -311,7 +311,14 @@ export class ConfirmPage {
   }
 
   private getAmountDetails() {
-    this.amount = this.txFormatProvider.formatAmount(this.coin, this.tx.amount);
+
+    let coin = this.coin;
+
+    if (coin === 'city' as Coin) {
+      coin = 'btc' as Coin;
+    }
+
+    this.amount = this.txFormatProvider.formatAmount(coin, this.tx.amount);
   }
 
   private getTotalAmountDetails(tx, wallet) {
@@ -467,7 +474,7 @@ export class ConfirmPage {
     return (
       this.wallet.cachedStatus &&
       this.wallet.cachedStatus.balance.totalAmount >=
-        this.tx.amount + this.tx.feeRate &&
+      this.tx.amount + this.tx.feeRate &&
       !this.tx.spendUnconfirmed
     );
   }
@@ -583,8 +590,7 @@ export class ConfirmPage {
           } else if (this.usingMerchantFee) {
             const maxAllowedFee = feeRate * 5;
             this.logger.info(
-              `Using Merchant Fee: ${
-                tx.feeRate
+              `Using Merchant Fee: ${tx.feeRate
               } vs. referent level (5 * feeRate) ${maxAllowedFee}`
             );
             const isUtxo = this.currencyProvider.isUtxoCoin(wallet.coin);
@@ -783,9 +789,9 @@ export class ConfirmPage {
           this.tx = tx;
           this.logger.debug(
             'Confirm. TX Fully Updated for wallet:' +
-              wallet.id +
-              ' Txp:' +
-              txp.id
+            wallet.id +
+            ' Txp:' +
+            txp.id
           );
 
           this.getTotalAmountDetails(tx, wallet);
@@ -1354,7 +1360,7 @@ export class ConfirmPage {
         const name = wallet.name;
         const message = this.replaceParametersProvider.replace(
           this.translate.instant(
-            'Sending {{amount}} {{unit}} from your {{name}} wallet'
+            'Sending {{amount}} CITY from your City Coin wallet' // 'Sending {{amount}} {{unit}} from your {{name}} wallet'
           ),
           { amount, unit, name }
         );

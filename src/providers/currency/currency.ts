@@ -104,6 +104,10 @@ export class CurrencyProvider {
   }
 
   getPrecision(coin: Coin) {
+    if (coin === 'city' as Coin) {
+      coin = 'btc' as Coin;
+    }
+
     return this.coinOpts[coin].unitInfo;
   }
 
